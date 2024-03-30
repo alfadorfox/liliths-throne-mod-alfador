@@ -41,6 +41,7 @@ import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.TFModifier;
 import com.lilithsthrone.game.inventory.enchanting.TFPotency;
+import com.lilithsthrone.game.inventory.item.AbstractDiaper;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
@@ -56,7 +57,7 @@ import com.lilithsthrone.utils.comparators.ClothingZLayerComparator;
 
 /**
  * @since 0.1.0
- * @version 0.3.9.5
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class InventoryDialogue {
@@ -6860,7 +6861,7 @@ public class InventoryDialogue {
 						
 						if(owner!=null) {
 							owner.removeClothing(clothing);
-							AbstractClothing dyedClothing = new AbstractClothing(clothing) {};
+							AbstractClothing dyedClothing = (clothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)clothing) : new AbstractClothing(clothing) {};
 							dyedClothing.setColours(dyePreviews);
 							dyedClothing.setPattern(dyePreviewPattern);
 							dyedClothing.setPatternColours(dyePreviewPatterns);
@@ -6870,7 +6871,7 @@ public class InventoryDialogue {
 
 						} else {
 							Main.game.getPlayerCell().getInventory().removeClothing(clothing);
-							AbstractClothing dyedClothing = new AbstractClothing(clothing) {};
+							AbstractClothing dyedClothing = (clothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)clothing) : new AbstractClothing(clothing) {};
 							dyedClothing.setColours(dyePreviews);
 							dyedClothing.setPattern(dyePreviewPattern);
 							dyedClothing.setPatternColours(dyePreviewPatterns);
@@ -6957,7 +6958,7 @@ public class InventoryDialogue {
 						
 						if(owner!=null) {
 							owner.removeClothing(clothing, finalCount);
-							AbstractClothing dyedClothing = new AbstractClothing(clothing) {};
+							AbstractClothing dyedClothing = (clothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)clothing) : new AbstractClothing(clothing) {};
 							dyedClothing.setColours(dyePreviews);
 							dyedClothing.setPattern(dyePreviewPattern);
 							dyedClothing.setPatternColours(dyePreviewPatterns);
@@ -6967,7 +6968,7 @@ public class InventoryDialogue {
 
 						} else {
 							Main.game.getPlayerCell().getInventory().removeClothing(clothing, finalCount);
-							AbstractClothing dyedClothing = new AbstractClothing(clothing) {};
+							AbstractClothing dyedClothing = (clothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)clothing) : new AbstractClothing(clothing) {};
 							dyedClothing.setColours(dyePreviews);
 							dyedClothing.setPattern(dyePreviewPattern);
 							dyedClothing.setPatternColours(dyePreviewPatterns);
@@ -7066,7 +7067,7 @@ public class InventoryDialogue {
 							for(AbstractClothing c : clothingMatches) {
 								int clothingCount = owner.getAllClothingInInventory().get(c);
 								owner.removeClothing(c, clothingCount);
-								AbstractClothing dyedClothing = new AbstractClothing(c) {};
+								AbstractClothing dyedClothing = (c instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)c) : new AbstractClothing(c) {};
 								dyedClothing.setColours(dyePreviews);
 								dyedClothing.setPattern(dyePreviewPattern);
 								dyedClothing.setPatternColours(dyePreviewPatterns);
@@ -7079,7 +7080,7 @@ public class InventoryDialogue {
 							for(AbstractClothing c : clothingMatches) {
 								int clothingCount = Main.game.getPlayerCell().getInventory().getAllClothingInInventory().get(c);
 								Main.game.getPlayerCell().getInventory().removeClothing(c, clothingCount);
-								AbstractClothing dyedClothing = new AbstractClothing(c) {};
+								AbstractClothing dyedClothing = (c instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)c) : new AbstractClothing(c) {};
 								dyedClothing.setColours(dyePreviews);
 								dyedClothing.setPattern(dyePreviewPattern);
 								dyedClothing.setPatternColours(dyePreviewPatterns);
@@ -7203,7 +7204,7 @@ public class InventoryDialogue {
 					@Override
 					public void effects(){
 						Main.game.getPlayerCell().getInventory().removeClothing(clothing);
-						AbstractClothing dyedClothing = new AbstractClothing(clothing) {};
+						AbstractClothing dyedClothing = (clothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)clothing) : new AbstractClothing(clothing) {};
 						dyedClothing.setColours(dyePreviews);
 						dyedClothing.setPattern(dyePreviewPattern);
 						dyedClothing.setPatternColours(dyePreviewPatterns);

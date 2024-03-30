@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clothing>
+    <!-- Clothing ID = "alfador_diaper_cloth_diaper" -->
+    <coreAttributes>
+        <authorTag><![CDATA[A patch discreetly sewn into a corner of the cloth diaper informs you that it was made with love by 'Alfador'.]]></authorTag>
+        <value>250</value>
+        <determiner><![CDATA[a]]></determiner>
+        <name appendColourName="true"><![CDATA[cloth diaper]]></name>
+        <namePlural pluralByDefault="false"><![CDATA[cloth diapers]]></namePlural>
+        <description><![CDATA[A cloth diaper. It is thick and absorbent enough to soak up a lot of fluid, and the included snap-on plastic panties prevent wicking to adjacent clothing. Its capacity is not infinite, however, so be sure to change your diaper and wash it when thoroughly soggy.]]></description>
+        <physicalResistance>0</physicalResistance>
+        <femininity>ANDROGYNOUS</femininity>
+        <equipSlots>
+            <slot>GROIN</slot>
+        </equipSlots>
+        <!-- Keep as LEGENDARY for now until support for padded NPCs is better, as anything less will cause it to randomly spawn. -->
+        <rarity>LEGENDARY</rarity>
+        <!-- No implemented clothing set; set bonus comes from src/com/lilithsthrone/game/inventory/SetBonus.java -->
+        <clothingSet/>
+        <!-- Unquipped image; TODO: update this to a folded diaper image when possible. -->
+        <imageName>cloth_diaper_wearing_clean_v3.svg</imageName>
+        <!-- Check the template socks.xml for parsing information; might be able to update the image when wet. -->
+        <imageEquippedName slot="GROIN">cloth_diaper_wearing_clean_v3.svg</imageEquippedName>
+        <!-- Stickers might also be an option for showing wetness/messiness! Maybe even altering color to match pee color, or having fun designs. res/mods/innoxia/items/clothing/rentalMommy/rental_mommy.xml for example stuff! -->
+        <stickers/>
+        <effects/>
+        <!-- TODO: Implement and verify that fluids are caught by the diaper or not according to whether the originating body part is covered by it. This includes urine, cum, girlcum, and crotchboob milk. -->
+        <blockedPartsList slot="GROIN">
+            <blockedParts>
+                <displacementType>REMOVE_OR_EQUIP</displacementType>
+                <clothingAccessRequired>
+                    <clothingAccess>GROIN</clothingAccess>
+                </clothingAccessRequired>
+                <blockedBodyParts/>
+                <clothingAccessBlocked/>
+                <concealedSlots/>
+            </blockedParts>
+            <blockedParts>
+                <displacementType>OPEN</displacementType>
+                <clothingAccessRequired>
+                    <clothingAccess>GROIN</clothingAccess>
+                </clothingAccessRequired>
+                <blockedBodyParts>
+                    <bodyPart>ASS</bodyPart>
+                    <bodyPart>ANUS</bodyPart>
+                    <bodyPart>VAGINA</bodyPart>
+                    <bodyPart>TESTICLES</bodyPart>
+                    <bodyPart>PENIS</bodyPart>
+                    <bodyPart>MOUND</bodyPart>
+                    <bodyPart>BREASTS_CROTCH</bodyPart>
+                </blockedBodyParts>
+                <clothingAccessBlocked/>
+                <concealedSlots>
+                    <slot>PENIS</slot>
+                    <slot>PIERCING_PENIS</slot>
+                    <slot>VAGINA</slot>
+                    <slot>PIERCING_VAGINA</slot>
+                    <slot>ANUS</slot>
+                </concealedSlots>
+            </blockedParts>
+            <blockedParts>
+                <displacementType>PULLS_DOWN</displacementType>
+                <clothingAccessRequired>
+                    <clothingAccess>GROIN</clothingAccess>
+                </clothingAccessRequired>
+                <blockedBodyParts>
+                    <bodyPart>PENIS</bodyPart>
+                    <bodyPart>BREASTS_CROTCH</bodyPart>
+                </blockedBodyParts>
+                <clothingAccessBlocked/>
+                <concealedSlots>
+                    <slot>PENIS</slot>
+                    <slot>PIERCING_PENIS</slot>
+                </concealedSlots>
+            </blockedParts>
+            <blockedParts>
+                <displacementType>SHIFTS_ASIDE</displacementType>
+                <clothingAccessRequired>
+                    <clothingAccess>GROIN</clothingAccess>
+                </clothingAccessRequired>
+                <blockedBodyParts>
+                    <bodyPart>ANUS</bodyPart>
+                    <bodyPart>VAGINA</bodyPart>
+                    <bodyPart>TESTICLES</bodyPart>
+                    <bodyPart>PENIS</bodyPart>
+                    <bodyPart>MOUND</bodyPart>
+                </blockedBodyParts>
+                <clothingAccessBlocked/>
+                <concealedSlots>
+                    <slot>PENIS</slot>
+                    <slot>PIERCING_PENIS</slot>
+                    <slot>VAGINA</slot>
+                    <slot>PIERCING_VAGINA</slot>
+                    <slot>ANUS</slot>
+                </concealedSlots>
+            </blockedParts>
+        </blockedPartsList>
+
+        <incompatibleSlots/>
+
+        <primaryColours>
+            <colour>CLOTHING_WHITE</colour>
+            <colour>CLOTHING_PINK_LIGHT</colour>
+            <colour>CLOTHING_PURPLE_LIGHT</colour>
+            <colour>CLOTHING_BLUE_LIGHT</colour>
+            <colour>CLOTHING_GREEN_LIME</colour>
+        </primaryColours>
+        <secondaryColours>
+            <colour>CLOTHING_BRASS</colour>
+            <colour>CLOTHING_STEEL</colour>
+        </secondaryColours>
+        <secondaryColoursDye values="ALL_WITH_METALS"/>
+        <tertiaryColours/>
+        <tertiaryColoursDye/>
+
+        <!-- could use patterns in the future for patterned diaper designs -->
+
+        <itemTags>
+            <tag>SOLD_BY_ALFADOR</tag>
+            <tag>DIAPER</tag>
+            <tag>WASHABLE_DIAPER</tag>
+            <tag>ENABLE_SEX_EQUIP</tag>
+        </itemTags>
+
+    </coreAttributes>
+
+    <replacementText type="REMOVE_OR_EQUIP">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(wrap)] the diaper around [npc.her] [npc.hips], pinning it in place with the included safety pins before snapping the plastic panties on.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(wrap)] the diaper around [npc2.namePos] [npc2.hips], pinning it in place with the included safety pins before snapping the plastic panties on.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] [npc.verb(yank)] the diaper tightly around [npc2.namePos] [npc2.hips], "accidentally" poking [npc2.her] while pinning it in place with the included safety pins, then [npc.verb(jerk)] the plastic panties into place.]]>
+        </otherRough>
+    </replacementText>
+
+    <displacementText type="REMOVE_OR_EQUIP">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(unsnap)] the plastic panties before unpinning [npc.her] diaper and carefully taking it off.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(unsnap)] the plastic panties over [npc2.namePos] diaper before unpinning it and carefully taking it off.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] roughly [npc.verb(yank)] off [npc2.namePos] plastic panties with a pop of the snaps, then [npc.verb(unpin)] [npc2.her] diaper and [npc.verb(fling)] it off.]]>
+        </otherRough>
+    </displacementText>
+
+    <replacementText type="OPEN">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(pull)] [npc.her] diaper back between [npc.her] legs, pinning it back in place before resnapping the plastic panties.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(pull)] [npc2.namePos] diaper back between [npc2.her] legs, pinning it back in place before resnapping the plastic panties.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] roughly [npc.verb(yank)] [npc2.namePos] diaper back between [npc2.her] legs, "accidentally" poking [npc2.her] while pinning it back in place before resnapping the plastic panties.]]>
+        </otherRough>
+    </replacementText>
+
+    <displacementText type="OPEN">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(unsnap)] the plastic panties covering [npc.her] diaper, then [npc.verb(unfasten)] the safety pins and [npc.verb(tug)] the cloth diaper open.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(unsnap)] the plastic panties covering [npc2.namePos] diaper, then [npc.verb(unfasten)] the safety pins and [npc.verb(tug)] the cloth diaper open.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] [npc.verb(yank)] off [npc2.namePos] plastic panties with a pop of the snaps, then [npc.verb(unpin)] [npc2.her] diaper and [npc.verb(flip)] it open.]]>
+        </otherRough>
+    </displacementText>
+
+    <replacementText type="PULLS_DOWN">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(pull)] the waistband of [npc.her] diaper back up.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(pull)] the waistband of [npc2.namePos] diaper back up.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] roughly [npc.verb(jerk)] the waistband of [npc2.namePos] diaper back up.]]>
+        </otherRough>
+    </replacementText>
+
+    <displacementText type="PULLS_DOWN">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(tug)] down the waistband of [npc.her] diaper.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(tug)] down the waistband of [npc2.namePos] diaper.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] roughly [npc.verb(yank)] down the waistband of [npc2.namePos] diaper.]]>
+        </otherRough>
+    </displacementText>
+
+    <replacementText type="SHIFTS_ASIDE">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(adjust)] [npc.her] diaper, putting it back in its proper protective place.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(adjust)] [npc2.namePos] diaper, putting it back in its proper protective place.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] roughly [npc.verb(yank)] [npc2.namePos] diaper back into position, covering [npc2.her] crotch.]]>
+        </otherRough>
+    </replacementText>
+
+    <displacementText type="SHIFTS_ASIDE">
+        <self>
+            <![CDATA[[npc.Name] [npc.verb(tug)] the leg elastic of [npc.her] diaper, shifting it far enough to the side to expose [npc.her] crotch.]]>
+        </self>
+        <other>
+            <![CDATA[[npc.Name] [npc.verb(tug)] the leg elastic of [npc2.namePos] diaper, shifting it far enough to the side to expose [npc2.her] crotch.]]>
+        </other>
+        <otherRough>
+            <![CDATA[[npc.Name] roughly [npc.verb(jerk)] [npc2.namePos] diaper to the side, straining the elastic and shifting it far enough to expose [npc2.her] crotch.]]>
+        </otherRough>
+    </displacementText>
+</clothing>

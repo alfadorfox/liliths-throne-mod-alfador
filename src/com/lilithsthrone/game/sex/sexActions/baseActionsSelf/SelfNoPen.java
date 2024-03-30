@@ -5,22 +5,29 @@ import java.util.List;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
+import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.fetishes.AbstractFetish;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
+import com.lilithsthrone.game.inventory.ItemTag;
+import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
+import com.lilithsthrone.game.inventory.item.AbstractDiaper;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.SexAreaPenetration;
 import com.lilithsthrone.game.sex.SexParticipantType;
 import com.lilithsthrone.game.sex.sexActions.SexAction;
+import com.lilithsthrone.game.sex.sexActions.SexActionCategory;
+import com.lilithsthrone.game.sex.sexActions.SexActionPriority;
 import com.lilithsthrone.game.sex.sexActions.SexActionType;
+import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.WatersportsActions;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
 
 /**
  * @since 0.1.79
- * @version 0.4.0.0
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class SelfNoPen {
@@ -123,7 +130,7 @@ public class SelfNoPen {
 								+Main.sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.VAGINA).getName()+" tightly down against [npc.her] genderless mound.");
 			}
 		}
-		
+
 		@Override
 		public List<AbstractFetish> getFetishes(GameCharacter character) {
 			if(character.isPlayer()) {
@@ -133,5 +140,94 @@ public class SelfNoPen {
 			}
 		}
 	};
-	
+
+	// Watersports actions!
+	// TODO: small spray of pee
+	// TODO: light sprinkling of pee
+	// TODO: Allow without corruption requirement if watersports fetish possessed!
+	// here: pee your pants, empty your bladder. Only it doesn't empty it yet so you can test wet over and over!
+	// copied generic orgasm code; need to revise to pee instead!
+	public static final SexAction PEE_SELF_FULLY = new SexAction(
+			SexActionType.REQUIRES_NO_PENETRATION,
+			ArousalIncrease.TWO_LOW, // TODO: figure out how to increase these if watersports fetish!
+			ArousalIncrease.ZERO_NONE,
+			CorruptionLevel.THREE_DIRTY,
+			null,
+			SexParticipantType.SELF) {
+		private StringBuilder stringBuilderForAppendingDescriptions = new StringBuilder();
+		@Override
+		public String getActionTitle() {
+			return "Pee yourself!";
+		}
+		@Override
+		public String getActionDescription() {
+			return "Empty your bladder, no matter the consequences! Unless you're wearing a diaper, it's going to get everywhere!";
+		}
+		@Override
+		public SexActionCategory getCategory() {
+			return SexActionCategory.SELF;
+		}
+		@Override
+		public boolean isBaseRequirementsMet() {
+			return true;
+		}
+		@Override
+		public boolean isWatersportsAction() {
+			return true;
+		}
+		@Override
+		public boolean isAvailableDuringImmobilisation() {
+			return true;
+		}
+		@Override
+		public boolean isOverrideAvailableDuringResisting() {
+			return true;
+		}
+		@Override
+		public SexActionPriority getPriority() {
+			return SexActionPriority.LOW;
+		}
+		@Override
+		public String getDescription() {
+			return UtilText.returnStringAtRandom(
+					"[npc.Name] [npc.verb(let)] out a sigh of relief as [npc.her] [npc.bladder] begins to empty.",
+					"[npc.Name] [npc.verb(smile)] as [npc.she] [npc.verb(start)] to pee.",
+					"[npc.Name] slightly [npc.verb(bend)] [npc.her] [npc.legs] and [npc.verb(let)] go of the pressure in [npc.her] [npc.bladder]."
+			);
+		}
+
+		// TODO: pee in condom?!
+		@Override
+		public void applyEffects() {
+			GameCharacter urinator = Main.sex.getCharacterPerformingAction();
+			boolean peeingFromPenis = urinator.hasPenisIgnoreDildo();
+			boolean peeingFromVagina = urinator.hasVagina();
+			AbstractClothing penisClothing = urinator.getLowestZLayerCoverableArea(CoverableArea.PENIS);
+			AbstractClothing vaginaClothing = urinator.getLowestZLayerCoverableArea(CoverableArea.VAGINA);
+			int bladderful = Math.round(urinator.getBladder().getUrineStored());
+
+			if (peeingFromPenis && peeingFromVagina) {
+				if (((penisClothing == null && vaginaClothing == null)
+					|| (penisClothing != null && penisClothing.equals(vaginaClothing)))) {
+					// all goes in the same place
+					stringBuilderForAppendingDescriptions.append(WatersportsActions.wetThroughClothing(urinator, null, CoverableArea.VAGINA, bladderful));
+				} else {
+					// half and half
+					stringBuilderForAppendingDescriptions.append(WatersportsActions.wetThroughClothing(urinator, null, CoverableArea.PENIS, bladderful / 2));
+					stringBuilderForAppendingDescriptions.append(WatersportsActions.wetThroughClothing(urinator, null, CoverableArea.VAGINA, bladderful / 2));
+				}
+			} else if (peeingFromPenis) {
+				stringBuilderForAppendingDescriptions.append(WatersportsActions.wetThroughClothing(urinator, null, CoverableArea.PENIS, bladderful));
+			} else { // if there's no penis or vagina, assume it comes out from the otherwise featureless mound. :P
+				stringBuilderForAppendingDescriptions.append(WatersportsActions.wetThroughClothing(urinator, null, CoverableArea.VAGINA, bladderful));
+			}
+		}
+
+		@Override
+		public String applyEffectsString() {
+			String returnEffectString = stringBuilderForAppendingDescriptions.toString();
+			this.stringBuilderForAppendingDescriptions.setLength(0);
+			return returnEffectString;
+		}
+	};
 }

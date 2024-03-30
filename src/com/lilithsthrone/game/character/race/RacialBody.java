@@ -10,22 +10,7 @@ import java.util.Map.Entry;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractLegType;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringType;
-import com.lilithsthrone.game.character.body.types.AntennaType;
-import com.lilithsthrone.game.character.body.types.ArmType;
-import com.lilithsthrone.game.character.body.types.AssType;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.EarType;
-import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.HairType;
-import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.TorsoType;
-import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.types.TentacleType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.types.WingType;
+import com.lilithsthrone.game.character.body.types.*;
 import com.lilithsthrone.game.character.body.valueEnums.AreolaeSize;
 import com.lilithsthrone.game.character.body.valueEnums.AssSize;
 import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
@@ -60,7 +45,7 @@ import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.1.0
- * @version 0.3.7.1
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class RacialBody {
@@ -93,7 +78,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.HUMAN, Wetness.TWO_MOIST, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.HUMAN, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody ANGEL = new AbstractRacialBody(
@@ -124,7 +110,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.ANGEL,Wetness.ONE_SLIGHTLY_MOIST,Capacity.ONE_EXTREMELY_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
 			Util.newArrayListOfValues(WingType.ANGEL), WingSize.THREE_LARGE, WingSize.THREE_LARGE,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.ANGEL, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 		@Override
 		public Map<PersonalityTrait, Float> getPersonalityTraitChances() {
 			Map<PersonalityTrait, Float> map = new HashMap<>();
@@ -179,7 +166,8 @@ public class RacialBody {
 			TentacleType.NONE, 
 			VaginaType.DEMON_COMMON, Wetness.SEVEN_DROOLING, Capacity.ONE_EXTREMELY_TIGHT, OrificeDepth.FOUR_DEEP, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
 			Util.newArrayListOfValues(WingType.DEMON_COMMON, WingType.DEMON_FEATHERED), WingSize.THREE_LARGE, WingSize.THREE_LARGE,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.DEMON, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 		@Override
 		public Map<PersonalityTrait, Float> getPersonalityTraitChances() {
 			Map<PersonalityTrait, Float> map = super.getPersonalityTraitChances();
@@ -229,7 +217,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.COW_MORPH, Wetness.THREE_WET, Capacity.TWO_TIGHT, OrificeDepth.THREE_SPACIOUS, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.COW_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 	
 	public static AbstractRacialBody DOG_MORPH = new AbstractRacialBody(
@@ -260,7 +249,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.DOG_MORPH, Wetness.THREE_WET, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.DOG_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 		@Override
 		public Map<PersonalityTrait, Float> getPersonalityTraitChances() {
 			Map<PersonalityTrait, Float> map = super.getPersonalityTraitChances();
@@ -297,7 +287,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.FOX_MORPH, Wetness.THREE_WET, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.FOX_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 	
 	public static AbstractRacialBody WOLF_MORPH = new AbstractRacialBody(
@@ -329,7 +320,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.WOLF_MORPH, Wetness.FOUR_SLIMY, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.WOLF_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody CAT_MORPH = new AbstractRacialBody(
@@ -360,7 +352,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.CAT_MORPH, Wetness.TWO_MOIST, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.CAT_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody HORSE_MORPH = new AbstractRacialBody(
@@ -390,7 +383,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.HORSE_MORPH, Wetness.THREE_WET, Capacity.THREE_SLIGHTLY_LOOSE, OrificeDepth.THREE_SPACIOUS, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.HORSE_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody REINDEER_MORPH = new AbstractRacialBody(
@@ -421,7 +415,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.REINDEER_MORPH, Wetness.TWO_MOIST, Capacity.THREE_SLIGHTLY_LOOSE, OrificeDepth.THREE_SPACIOUS, ClitorisSize.ONE_BIG, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.REINDEER_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody ALLIGATOR_MORPH = new AbstractRacialBody(
@@ -452,7 +447,8 @@ public class RacialBody {
 		    TentacleType.NONE,
 		    VaginaType.ALLIGATOR_MORPH, Wetness.SEVEN_DROOLING, Capacity.ONE_EXTREMELY_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
 		    Util.newArrayListOfValues(WingType.NONE),  WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-		    GenitalArrangement.CLOACA) {
+		    GenitalArrangement.CLOACA,
+			BladderType.ALLIGATOR_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 	
 	public static AbstractRacialBody SQUIRREL_MORPH = new AbstractRacialBody(
@@ -484,7 +480,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.SQUIRREL_MORPH, Wetness.TWO_MOIST, Capacity.THREE_SLIGHTLY_LOOSE, OrificeDepth.THREE_SPACIOUS, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.SQUIRREL_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody RAT_MORPH = new AbstractRacialBody(
@@ -516,7 +513,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.RAT_MORPH, Wetness.TWO_MOIST, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.RAT_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 		@Override
 		public Map<PersonalityTrait, Float> getPersonalityTraitChances() {
 			Map<PersonalityTrait, Float> map = super.getPersonalityTraitChances();
@@ -554,7 +552,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.RABBIT_MORPH, Wetness.TWO_MOIST, Capacity.TWO_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.RABBIT_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 	};
 
 	public static AbstractRacialBody BAT_MORPH = new AbstractRacialBody(
@@ -585,7 +584,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.BAT_MORPH, Wetness.TWO_MOIST, Capacity.ONE_EXTREMELY_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
+			GenitalArrangement.NORMAL,
+			BladderType.BAT_MORPH, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 		@Override
 		public Map<PersonalityTrait, Float> getPersonalityTraitChances() {
 			Map<PersonalityTrait, Float> map = super.getPersonalityTraitChances();
@@ -622,7 +622,8 @@ public class RacialBody {
 			TentacleType.NONE,
 			VaginaType.HARPY, Wetness.THREE_WET, Capacity.ONE_EXTREMELY_TIGHT, OrificeDepth.TWO_AVERAGE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
 			Util.newArrayListOfValues(WingType.NONE), WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.CLOACA) {
+			GenitalArrangement.CLOACA,
+			BladderType.HARPY, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE) {
 		@Override
 		public Map<PersonalityTrait, Float> getPersonalityTraitChances() {
 			Map<PersonalityTrait, Float> map = super.getPersonalityTraitChances();

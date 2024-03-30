@@ -23,7 +23,7 @@ import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.3
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public abstract class AbstractBreastType implements BodyPartTypeInterface {
@@ -229,7 +229,7 @@ public abstract class AbstractBreastType implements BodyPartTypeInterface {
 	public String getNameSingular(GameCharacter gc) {
 		if (gc.hasBreasts()) {
 			if(namesBreasts==null || namesBreasts.isEmpty()) {
-				return UtilText.returnStringAtRandom("breast", "boob", "tit");
+				return UtilText.returnStringAtRandom("breast", "boob", "tit", "boobie", "tiddy");
 			}
 			return Util.randomItemFrom(namesBreasts);
 			
@@ -245,7 +245,7 @@ public abstract class AbstractBreastType implements BodyPartTypeInterface {
 	public String getNamePlural(GameCharacter gc) {
 		if (gc.hasBreasts()) {
 			if(namesBreastsPlural==null || namesBreastsPlural.isEmpty()) {
-				return UtilText.returnStringAtRandom("breasts", "boobs", "mammaries", "tits");
+				return UtilText.returnStringAtRandom("breasts", "boobs", "mammaries", "tits", "boobies", "tiddies");
 			}
 			return Util.randomItemFrom(namesBreastsPlural);
 			

@@ -59,6 +59,7 @@ import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.clothing.DisplacementType;
+import com.lilithsthrone.game.inventory.item.AbstractDiaper;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
@@ -101,7 +102,7 @@ import com.lilithsthrone.world.Cell;
  * Lasciate ogni speranza, voi ch'entrate.
  *
  * @since 0.1.0
- * @version 0.4.2.1
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class Sex {
@@ -931,7 +932,7 @@ public class Sex {
 			for (Entry<InventorySlot, Map<AbstractClothing, List<DisplacementType>>> entry2 : entry.getValue().entrySet()) {
 				for (AbstractClothing c : entry2.getValue().keySet()) {
 					if(!c.isDiscardedOnUnequip(entry2.getKey()) || c.isMilkingEquipment()) { // Special case for pumps, which are normally discarded on unequip
-						AbstractClothing dirtyClone = new AbstractClothing(c) {};
+						AbstractClothing dirtyClone = (c instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)c) : new AbstractClothing(c) {};
 						dirtyClone.setDirty(null, true);
 						dirtyClone.setSlotEquippedTo(null);
 						AbstractClothing clothingEquipped = character.getClothingInSlot(entry2.getKey());
@@ -2798,7 +2799,41 @@ public class Sex {
 							stringBuilderForAppendingDescriptions.append("<p style='text-align:center; padding:0; margin:0;'>"
 										+ UtilText.parse(Main.sex.getCharacterPerformingAction(), "[style.italicsGirlCum("+Units.fluid(squirtAmount)+" of [npc.namePos] [npc.girlcum] is sucked down into the milking machine's storage vat!)]")
 									+ "</p>");
-									
+							/**
+							 * Alfador inserted code here to support diaper use.
+							 */
+						} else if(vaginaClothing.getItemTags().contains(ItemTag.DIAPER)) {
+							Integer diaperLeak = ((AbstractDiaper)vaginaClothing).absorb(Main.sex.getCharacterPerformingAction().getGirlcum(), squirtAmount);
+							if (diaperLeak > 0) { // TODO: do something like this to make the version in WatersportsActions even more widely usable!
+								String leakString = squirtAmount == diaperLeak ? "[npc.NamePos] utterly saturated "+vaginaClothing.getName()+" cannot hold any of [npc.her] squirting, and "
+										: "[npc.NamePos] "+vaginaClothing.getName()+" "+(vaginaClothing.getClothingType().isPlural()?"absorb":"absorbs")+" some of [npc.her] squirting, but ";
+								AbstractClothing thighClothing = Main.sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.THIGHS);
+								if (thighClothing != null) {
+									thighClothing.setDirty(Main.sex.getCharacterPerformingAction(), true);
+									stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+									stringBuilderForAppendingDescriptions.append("[style.italicsGirlCum(");
+									stringBuilderForAppendingDescriptions.append(leakString);
+									stringBuilderForAppendingDescriptions.append("[npc.her] "+thighClothing.getName()+" "+(thighClothing.getClothingType().isPlural()?"are":"is")+" dirtied from leakage!");
+									stringBuilderForAppendingDescriptions.append(")]");
+									stringBuilderForAppendingDescriptions.append("</p>");
+								} else {
+									stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+									stringBuilderForAppendingDescriptions.append("[style.italicsGirlCum(");
+									stringBuilderForAppendingDescriptions.append(leakString);
+									stringBuilderForAppendingDescriptions.append((vaginaClothing.getClothingType().isPlural()?"they":"it")+" leaks!");
+									stringBuilderForAppendingDescriptions.append(")]");
+									stringBuilderForAppendingDescriptions.append("</p>");
+								}
+							} else {
+								stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+								stringBuilderForAppendingDescriptions.append("[style.italicsGirlCum(");
+								stringBuilderForAppendingDescriptions.append("[npc.NamePos] "+vaginaClothing.getName()+" "+(vaginaClothing.getClothingType().isPlural()?"absorb":"absorbs")+" all of [npc.her] squirting!");
+								stringBuilderForAppendingDescriptions.append(")]");
+								stringBuilderForAppendingDescriptions.append("</p>");
+							}
+							/**
+							 * End of Alfador-inserted code.
+							 */
 						} else if(!vaginaClothing.getItemTags().contains(ItemTag.PLUGS_VAGINA)
 								&& !vaginaClothing.getItemTags().contains(ItemTag.SEALS_VAGINA)) {
 							vaginaClothing.setDirty(Main.sex.getCharacterPerformingAction(), true);

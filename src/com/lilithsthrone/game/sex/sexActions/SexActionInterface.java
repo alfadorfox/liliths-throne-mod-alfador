@@ -45,7 +45,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.0
- * @version 0.3.9
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public interface SexActionInterface {
@@ -69,6 +69,10 @@ public interface SexActionInterface {
 	}
 
 	public default boolean isLovingAction() {
+		return false;
+	}
+
+	public default boolean isWatersportsAction() {
 		return false;
 	}
 
@@ -518,6 +522,10 @@ public interface SexActionInterface {
 					&& (!performingCharacter.getAffectionLevel(Main.sex.getCharacterTargetedForSexAction(this)).isGreaterThan(AffectionLevel.POSITIVE_TWO_LIKE) || performingCharacter.hasFetish(Fetish.FETISH_SADIST))) {
 				return false;
 			}
+		}
+
+		if (this.isWatersportsAction() && !Main.getProperties().hasValue(PropertyValue.wsContent)) {
+			return false;
 		}
 		
 		if(Main.sex.isCharacterImmobilised(performingCharacter) && !isAvailableDuringImmobilisation()) {
@@ -1306,6 +1314,9 @@ public interface SexActionInterface {
 					}
 					if(isSadisticAction()) {
 						return PresetColour.BASE_CRIMSON;
+					}
+					if(isWatersportsAction()) {
+						return PresetColour.BASE_GOLD;
 					}
 					if(isSexPenetrationHighlight()) {
 						if(SexActionInterface.this.getPerformingCharacterAreas().stream().anyMatch((area) -> area.isPenetration())) {

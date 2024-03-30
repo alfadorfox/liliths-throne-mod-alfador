@@ -59,7 +59,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.0
- * @version 0.4.2
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia, Maxis
  */
 public class OptionsDialogue {
@@ -84,6 +84,9 @@ public class OptionsDialogue {
 						:"")
 					+ "<h5 class='special-text' style='text-align:center;'>Created by "+Main.AUTHOR+"</h5>"
 					+ "<br/>"
+					+ "<p>"
+						+ "[style.italicsMinorBad(<b>WARNING: This version of the game has been MODDED by Alfador, and may contain content in excess of what you would find in the unaltered game! Content warnings for Watersports and ABDL content, including Diapers, apply. Other corrupting content, such as scat, may be present in future updates.</b>)]"
+					+ "</p>"
 					+ "<p>"
 						+ "This game is a text-based erotic RPG, and contains a lot of graphic sexual content. You must agree to the game's disclaimer before playing this game!"
 					+ "</p>"
@@ -2676,6 +2679,32 @@ public class OptionsDialogue {
 		@Override
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
+			/**
+			 * Alfador inserted code here to control modded content options.
+			 */
+			UtilText.nodeContentSB.append(getContentPreferenceDiv("ABDL",
+					PresetColour.BASE_YELLOW_LIGHT,
+					"Adult Baby and Diaper content",
+					"When disabled, Alfador's shop will not appear, and all Adult Baby clothing, diapers, training pants, and associated fetishes will not appear.",
+					Main.getProperties().hasValue(PropertyValue.abdlContent)));
+			UtilText.nodeContentSB.append(getContentPreferenceDiv("WATERSPORTS",
+					PresetColour.BASE_YELLOW_LIGHT,
+					"Watersports (urine) content",
+					"When disabled, you will not have the option to pee, and your bladder will not fill. (If diaper content is enabled, diapers will still absorb cum.)",
+					Main.getProperties().hasValue(PropertyValue.wsContent)));
+			UtilText.nodeContentSB.append(getContentPreferenceDiv("SCAT",
+					PresetColour.BASE_BROWN_LIGHT,
+					"Scat (feces) content",
+					"When disabled, you will not have the option to poop, and your bowels will not fill. {NYI}",
+					Main.getProperties().hasValue(PropertyValue.scatContent)));
+			UtilText.nodeContentSB.append(getContentPreferenceDiv("INCONTINENCE",
+					PresetColour.BASE_YELLOW_LIGHT,
+					"Incontinence content",
+					"When disabled, your bladder and bowels being full carries no chance of having an accident, and that chance will never increase above zero. If watersports and scat content are both disabled, this option does not matter. {NYI}",
+					Main.getProperties().hasValue(PropertyValue.inContent)));
+			/**
+			 * End of Alfador-inserted code.
+			 */
 			
 			UtilText.nodeContentSB.append(getContentPreferenceDiv("NON_CON",
 					PresetColour.BASE_CRIMSON,

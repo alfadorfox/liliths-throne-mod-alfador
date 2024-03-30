@@ -20,6 +20,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import com.lilithsthrone.game.character.body.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -27,26 +28,6 @@ import com.lilithsthrone.controller.xmlParsing.XMLLoadException;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.CorruptionLevel;
-import com.lilithsthrone.game.character.body.Antenna;
-import com.lilithsthrone.game.character.body.Arm;
-import com.lilithsthrone.game.character.body.Ass;
-import com.lilithsthrone.game.character.body.Body;
-import com.lilithsthrone.game.character.body.BodyPartInterface;
-import com.lilithsthrone.game.character.body.Breast;
-import com.lilithsthrone.game.character.body.BreastCrotch;
-import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.Ear;
-import com.lilithsthrone.game.character.body.Eye;
-import com.lilithsthrone.game.character.body.Face;
-import com.lilithsthrone.game.character.body.Hair;
-import com.lilithsthrone.game.character.body.Horn;
-import com.lilithsthrone.game.character.body.Leg;
-import com.lilithsthrone.game.character.body.Penis;
-import com.lilithsthrone.game.character.body.Tail;
-import com.lilithsthrone.game.character.body.Tentacle;
-import com.lilithsthrone.game.character.body.Torso;
-import com.lilithsthrone.game.character.body.Vagina;
-import com.lilithsthrone.game.character.body.Wing;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractFaceType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractHairType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractTailType;
@@ -144,7 +125,7 @@ import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.67
- * @version 0.4.2
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia, tukaima, Maxis
  */
 public class CharacterUtils {
@@ -852,6 +833,26 @@ public class CharacterUtils {
 				body.getTail().setTailCount(blankNPC, father.getTailCount(), false);
 			}
 		}
+
+		/**
+		 * Alfador inserted code here for bladder inheritance.
+		 */
+		// Bladder:
+		if(Math.random()>0.5) {
+			if(Math.random()>=takesAfterMotherChance) {
+				body.getBladder().setUrineStorage(blankNPC, (3*mother.getBladder().getUrineStorage() + father.getBladder().getUrineStorage())/4);
+				body.getBladder().setContinencePercent((3*mother.getBladder().getContinencePercent() + father.getBladder().getContinencePercent())/4);
+			} else {
+				body.getBladder().setUrineStorage(blankNPC, (mother.getBladder().getUrineStorage() + 3*father.getBladder().getUrineStorage())/4);
+				body.getBladder().setContinencePercent((mother.getBladder().getContinencePercent() + 3*father.getBladder().getContinencePercent())/4);
+			}
+		} else {
+			body.getBladder().setUrineStorage(blankNPC, (mother.getBladder().getUrineStorage() + father.getBladder().getUrineStorage())/2);
+			body.getBladder().setContinencePercent((mother.getBladder().getContinencePercent() + father.getBladder().getContinencePercent())/2);
+		}
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		// Vagina:
 		boolean inheritsFromMotherVagina = mother.hasVagina();
@@ -1289,6 +1290,7 @@ public class CharacterUtils {
 				new Torso(stage.isSkinFurry()?startingBodyType.getTorsoType():TorsoType.HUMAN),
 				startingBodyType.getBodyMaterial(),
 				startingBodyType.getGenitalArrangement(),
+				new Bladder(startingBodyType.getBladderType(), startingBodyType.getBladderCapacity(), startingBodyType.getBladderContinence()),
 				(startingGender.isFeminine() ? startingBodyType.getFemaleHeight() : startingBodyType.getMaleHeight()),
 				startingGender.getType()==PronounType.NEUTRAL?50:(startingGender.isFeminine() ? startingBodyType.getFemaleFemininity() : startingBodyType.getMaleFemininity()),
 				(startingGender.isFeminine() ? startingBodyType.getFemaleBodySize() : startingBodyType.getMaleBodySize()),
@@ -2485,6 +2487,23 @@ public class CharacterUtils {
 				}
 			}
 		}
+		/**
+		 * Alfador inserted code here to control NPCs spawning with diapers.
+		 */
+		// TODO: When fetishes available, add diapers to inventory (and possibly wipes!) based on NPC wanting to diaper a partner.
+		/**
+		 * if(character.hasFetish(Fetish.FETISH_DIAPER_APPLIER)) {
+		 *     maxClothingCount+=1;
+		 *     for(AbstractClothingType ct : ClothingType.getAllClothing()) {
+		 *         if (ct.getItemTags(InventorySlot.GROIN).contains(ItemTag.DIAPER)) {
+		 *             availableClothing.add(ct); // only check for regular diapers, not bra diapers
+		 *         }
+		 *     }
+		 * }
+		 */
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		// Sex toys:
 		if(character.getCorruptionLevel().getMinimumValue()>=CorruptionLevel.THREE_DIRTY.getMinimumValue()) { // Only 'dirty' corruption characters carry sex toys around
 			maxClothingCount+=1;

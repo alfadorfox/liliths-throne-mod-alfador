@@ -54,15 +54,7 @@ import com.lilithsthrone.game.sex.sexActions.baseActions.TongueMouth;
 import com.lilithsthrone.game.sex.sexActions.baseActions.TongueNipple;
 import com.lilithsthrone.game.sex.sexActions.baseActions.TongueNippleCrotch;
 import com.lilithsthrone.game.sex.sexActions.baseActions.TongueVagina;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.GenericActions;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.GenericOrgasms;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.GenericPositioning;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.GenericTalk;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.LovingActions;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.PartnerTalk;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.PlayerTalk;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.PositioningMenu;
-import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.SadisticActions;
+import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.*;
 import com.lilithsthrone.game.sex.sexActions.baseActionsSelf.SelfFingerAnus;
 import com.lilithsthrone.game.sex.sexActions.baseActionsSelf.SelfFingerBreasts;
 import com.lilithsthrone.game.sex.sexActions.baseActionsSelf.SelfFingerCrotchNipple;
@@ -88,7 +80,7 @@ import com.lilithsthrone.utils.Util.Value;
 
 /**
  * @since 0.1.97
- * @version 0.3.3
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class SexActionPresets {
@@ -426,6 +418,9 @@ public class SexActionPresets {
 
 		// Gentle actions:
 		sexActions.add(LovingActions.class);
+
+		// Watersports actions:
+		sexActions.add(WatersportsActions.class);
 		
 		// Finger actions:
 		sexActions.add(FingerAnus.class);

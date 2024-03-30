@@ -138,4 +138,11 @@
 	</wingTypes>
 	<maleWingSize>0</maleWingSize>
 	<femaleWingSize>0</femaleWingSize>
+
+	<!-- Bladder (added by Alfador): -->
+	<bladderType>NoStepOnSnek_snake_bladder</bladderType>
+	<!-- Bladder capacity in mL. Default is 500 -->
+	<bladderCapacity>500</bladderCapacity>
+	<!-- Continence, from 0 (can't hold at all) to 100 (fully potty trained) -->
+	<bladderContinence>100</bladderContinence>
 </racialBody>

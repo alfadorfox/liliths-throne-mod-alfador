@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.lilithsthrone.game.character.body.types.*;
 import com.lilithsthrone.main.Main;
 import org.w3c.dom.Document;
 
@@ -14,6 +15,7 @@ import com.lilithsthrone.controller.xmlParsing.Element;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractAntennaType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractArmType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractAssType;
+import com.lilithsthrone.game.character.body.abstractTypes.AbstractBladderType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractBreastType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractEarType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractEyeType;
@@ -29,22 +31,6 @@ import com.lilithsthrone.game.character.body.abstractTypes.AbstractVaginaType;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractWingType;
 import com.lilithsthrone.game.character.body.coverings.AbstractBodyCoveringType;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringType;
-import com.lilithsthrone.game.character.body.types.AntennaType;
-import com.lilithsthrone.game.character.body.types.ArmType;
-import com.lilithsthrone.game.character.body.types.AssType;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.EarType;
-import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.HairType;
-import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.types.TentacleType;
-import com.lilithsthrone.game.character.body.types.TorsoType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.types.WingType;
 import com.lilithsthrone.game.character.body.valueEnums.AreolaeShape;
 import com.lilithsthrone.game.character.body.valueEnums.AreolaeSize;
 import com.lilithsthrone.game.character.body.valueEnums.AssSize;
@@ -78,7 +64,7 @@ import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.3.1
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public abstract class AbstractRacialBody {
@@ -215,6 +201,11 @@ public abstract class AbstractRacialBody {
 	private List<AbstractWingType> wingTypes;
 	private int maleWingSize;
 	private int femaleWingSize;
+
+	// Bladder:
+	private AbstractBladderType bladderType;
+	private int bladderCapacity;
+	private int bladderContinence;
 	
 	// External file variables:
 	private Map<PersonalityTrait, Float> personalityChanceOverrides;
@@ -317,10 +308,18 @@ public abstract class AbstractRacialBody {
 			List<AbstractWingType> wingTypes,
 				WingSize maleWingSize,
 				WingSize femaleWingSize,
-			GenitalArrangement genitalArrangement) {
+			GenitalArrangement genitalArrangement,
+			/**
+			 * Alfador inserted code here to handle bladder.
+			 */
+			AbstractBladderType	bladderType,
+				int bladderCapacity,
+				int bladderContinence) {
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		this.mod = false;
 		this.fromExternalFile = false;
-		
 		// Antenna:
 		this.antennaTypes = antennaTypes;
 		this.maleAntennaLength = HornLength.TWO_LONG.getMedianValue();
@@ -452,6 +451,17 @@ public abstract class AbstractRacialBody {
 		this.wingTypes = wingTypes;
 		this.maleWingSize = maleWingSize.getValue();
 		this.femaleWingSize = femaleWingSize.getValue();
+
+		/**
+		 * Alfador inserted code here to handle bladder.
+		 */
+		// Bladder:
+		this.bladderType = bladderType;
+		this.bladderCapacity = bladderCapacity;
+		this.bladderContinence = bladderContinence;
+		/**
+		 * End of Alfador-inserted code.
+		 */
 	}
 	
 	public AbstractRacialBody(File XMLFile, String author, boolean mod) {
@@ -644,6 +654,17 @@ public abstract class AbstractRacialBody {
 				}
 				this.maleWingSize = Integer.valueOf(coreElement.getMandatoryFirstOf("maleWingSize").getTextContent());
 				this.femaleWingSize = Integer.valueOf(coreElement.getMandatoryFirstOf("femaleWingSize").getTextContent());
+
+				/**
+				 * Alfador inserted code here to handle bladder.
+				 */
+				// Bladder:
+				this.bladderType = BladderType.getBladderTypeFromId(coreElement.getMandatoryFirstOf("bladderType").getTextContent());
+				this.bladderCapacity = Integer.valueOf(coreElement.getMandatoryFirstOf("bladderCapacity").getTextContent());
+				this.bladderContinence = Integer.valueOf(coreElement.getMandatoryFirstOf("bladderContinence").getTextContent());
+				/**
+				 * End of Alfador-inserted code.
+				 */
 				
 				// Personalities:
 				personalityChanceOverrides = new HashMap<>();
@@ -1203,5 +1224,17 @@ public abstract class AbstractRacialBody {
 
 	public GenitalArrangement getGenitalArrangement() {
 		return genitalArrangement;
+	}
+
+	public AbstractBladderType getBladderType() {
+		return bladderType;
+	}
+
+	public int getBladderCapacity() {
+		return bladderCapacity;
+	}
+
+	public int getBladderContinence() {
+		return  bladderContinence;
 	}
 }

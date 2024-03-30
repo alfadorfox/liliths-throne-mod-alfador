@@ -25,7 +25,7 @@ import com.lilithsthrone.utils.Util.Value;
 
 /**
  * @since 0.3.8.9
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public abstract class AbstractVaginaType implements BodyPartTypeInterface {
@@ -38,7 +38,11 @@ public abstract class AbstractVaginaType implements BodyPartTypeInterface {
 			new Value<>("pussy", 4),
 			new Value<>("sex", 1),
 			new Value<>("slit", 1),
-			new Value<>("twat", 2));
+			new Value<>("twat", 2),
+			new Value<>("cunny", 3),
+			new Value<>("vee-vee", 1),
+			new Value<>("foofy", 1),
+			new Value<>("tweety", 1)); // Alfador has added some cuter names
 	protected static final Map<String, Integer> BASE_NAMES_PLURAL = Util.newHashMapOfValues(
 			new Value<>("cherries", 2),
 			new Value<>("cunts", 2),
@@ -46,7 +50,11 @@ public abstract class AbstractVaginaType implements BodyPartTypeInterface {
 			new Value<>("pussies", 4),
 			new Value<>("sexes", 1),
 			new Value<>("slits", 1),
-			new Value<>("twats", 2));
+			new Value<>("twats", 2),
+			new Value<>("cunnies", 3),
+			new Value<>("vee-vees", 1),
+			new Value<>("foofies", 1),
+			new Value<>("tweeties", 1));
 
 	private boolean mod;
 	private boolean fromExternalFile;

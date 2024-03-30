@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.lilithsthrone.game.character.body.abstractTypes.*;
+import com.lilithsthrone.game.character.body.types.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -18,45 +20,12 @@ import com.lilithsthrone.controller.xmlParsing.XMLUtil;
 import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractArmType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAssType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractBreastType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEarType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEyeType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractFaceType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHairType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHornType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractLegType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractPenisType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTailType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTentacleType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTongueType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTorsoType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractVaginaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractWingType;
 import com.lilithsthrone.game.character.body.coverings.AbstractBodyCoveringType;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringCategory;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringSkinToneColorHelper;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringType;
 import com.lilithsthrone.game.character.body.coverings.Covering;
 import com.lilithsthrone.game.character.body.tags.BodyPartTag;
-import com.lilithsthrone.game.character.body.types.AntennaType;
-import com.lilithsthrone.game.character.body.types.ArmType;
-import com.lilithsthrone.game.character.body.types.AssType;
-import com.lilithsthrone.game.character.body.types.BodyPartTypeInterface;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.EarType;
-import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.HairType;
-import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.types.TentacleType;
-import com.lilithsthrone.game.character.body.types.TorsoType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.types.WingType;
 import com.lilithsthrone.game.character.body.valueEnums.AgeCategory;
 import com.lilithsthrone.game.character.body.valueEnums.AreolaeShape;
 import com.lilithsthrone.game.character.body.valueEnums.BodyHair;
@@ -124,7 +93,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.0
- * @version 0.4.0
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class Body implements XMLSaving {
@@ -153,6 +122,14 @@ public class Body implements XMLSaving {
 	private Wing wing;
 
 	private OrificeSpinneret spinneret;
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	private Bladder bladder;
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	private GenitalArrangement genitalArrangement;
 	
@@ -193,6 +170,13 @@ public class Body implements XMLSaving {
 		private final Hair hair;
 		private final Leg leg;
 		private final Torso torso;
+		/**
+		 * Alfador inserted code here to support fluid urine.
+		 */
+		private Bladder bladder;
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		private final BodyMaterial bodyMaterial;
 		private GenitalArrangement genitalArrangement;
 		private final int height;
@@ -209,7 +193,7 @@ public class Body implements XMLSaving {
 		private Wing wing = new Wing(WingType.NONE, 0);
 		private OrificeSpinneret spinneret = new OrificeSpinneret();
 
-		public BodyBuilder(Arm arm, Ass ass, Breast breast, Face face, Eye eye, Ear ear, Hair hair, Leg leg, Torso torso, BodyMaterial bodyMaterial, GenitalArrangement genitalArrangement, int height, int femininity, int bodySize, int muscle) {
+		public BodyBuilder(Arm arm, Ass ass, Breast breast, Face face, Eye eye, Ear ear, Hair hair, Leg leg, Torso torso, BodyMaterial bodyMaterial, GenitalArrangement genitalArrangement, Bladder bladder, int height, int femininity, int bodySize, int muscle) {
 			this.arm = arm;
 			this.ass = ass;
 			this.breast = breast;
@@ -221,6 +205,7 @@ public class Body implements XMLSaving {
 			this.torso = torso;
 			this.bodyMaterial = bodyMaterial;
 			this.genitalArrangement = genitalArrangement;
+			this.bladder = bladder; // updated by Alfador to handle bladder
 			this.height = height;
 			this.femininity = femininity;
 			this.bodySize = bodySize;
@@ -271,6 +256,16 @@ public class Body implements XMLSaving {
 			this.spinneret = spinneret;
 			return this;
 		}
+		/**
+		 * Alfador inserted code here to support fluid urine.
+		 */
+		public BodyBuilder bladder(Bladder bladder) {
+			this.bladder = bladder;
+			return this;
+		}
+		/**
+		 * End of Alfador-inserted code.
+		 */
 
 		@Override
 		public Body build() {
@@ -298,6 +293,13 @@ public class Body implements XMLSaving {
 		wing = builder.wing;
 		
 		spinneret = builder.spinneret;
+		/**
+		 * Alfador inserted code here to support fluid urine.
+		 */
+		bladder = builder.bladder;
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		bodyMaterial = builder.bodyMaterial;
 		genitalArrangement = builder.genitalArrangement;
@@ -751,6 +753,21 @@ public class Body implements XMLSaving {
 			for(OrificeModifier om : this.spinneret.getOrificeModifiers()) {
 				XMLUtil.addAttribute(doc, spinneretModifiers, om.toString(), "true");
 			}
+		/**
+		 * Alfador inserted code here to support fluid urine.
+		 */
+		// Bladder:
+		Element bodyBladder = doc.createElement("bladder");
+		parentElement.appendChild(bodyBladder);
+			XMLUtil.addAttribute(doc, bodyBladder, "type", BladderType.getIdFromBladderType(this.bladder.getType()));
+			XMLUtil.addAttribute(doc, bodyBladder, "urineStorage", String.valueOf(this.bladder.urineStorage));
+			XMLUtil.addAttribute(doc, bodyBladder, "urineStored", String.valueOf(this.bladder.urineStored));
+			XMLUtil.addAttribute(doc, bodyBladder, "urineRegeneration", String.valueOf(this.bladder.urineRegeneration));
+			XMLUtil.addAttribute(doc, bodyBladder, "continencePercent", String.valueOf(this.bladder.continencePercent));
+		this.bladder.urine.saveAsXML(parentElement, doc);
+		/**
+		 * End of Alfador-inserted code.
+		 */
 			
 		// Torso:
 		Element bodyTorso = doc.createElement("torso");
@@ -1673,6 +1690,20 @@ public class Body implements XMLSaving {
 				+ "<br/>type: "+importedWing.getType()+"<br/>"
 				+ "<br/>size: "+importedWing.getSizeValue()+"<br/>");
 
+		/**
+		 * Alfador inserted code here to support fluid urine.
+		 */
+		// **************** Bladder **************** //
+		Element bladder = (Element)parentElement.getElementsByTagName("bladder").item(0);
+		Bladder importedBladder = new Bladder(BladderType.getBladderTypeFromId(bladder.getAttribute("type")),
+				Integer.valueOf(bladder.getAttribute("urineStorage")),
+				Integer.valueOf(bladder.getAttribute("continencePercent")));
+		importedBladder.urineRegeneration = Integer.valueOf(bladder.getAttribute("urineRegeneration"));
+		importedBladder.urineStored = Float.valueOf(bladder.getAttribute("urineStored"));
+		importedBladder.urine = FluidUrine.loadFromXML(parentElement, doc, importedBladder.getType().getFluidType());
+		/**
+		 * End of Alfador-inserted code.
+		 */
 
 		// ************** Version Overrides **************//
 
@@ -1758,6 +1789,7 @@ public class Body implements XMLSaving {
 				importedTorso,
 				importedBodyMaterial,
 				importedGenitalArrangement,
+				importedBladder,
 				importedHeight,
 				importedFemininity,
 				importedBodySize,
@@ -3741,6 +3773,20 @@ public class Body implements XMLSaving {
 		return wing.getType();
 	}
 
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	public Bladder getBladder() {
+		return bladder;
+	}
+
+	public AbstractBladderType getBladderType() {
+		return bladder.getType();
+	}
+	/**
+	 * End of Alfador-inserted code.
+	 */
+
 	public void setAntenna(Antenna antenna) {
 		this.antenna = antenna;
 	}
@@ -3952,6 +3998,24 @@ public class Body implements XMLSaving {
 	public String setWingType(GameCharacter owner, AbstractWingType type) {
 		return this.wing.setType(owner, type);
 	}
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	public void setBladder(Bladder bladder) {
+		this.bladder = bladder;
+	}
+
+	public String setBladderType(AbstractBladderType type) {
+		return this.bladder.setType(null, type);
+	}
+
+	public String setBladderType(GameCharacter owner, AbstractBladderType type) {
+		return this.bladder.setType(owner, type);
+	}
+	/**
+	 * End of Alfador-inserted code.
+	 */
 
 	public void applyLegConfigurationTransformation(AbstractLegType legType, LegConfiguration legConfiguration, boolean applyFullEffects) {
 		this.setLegType(legType);

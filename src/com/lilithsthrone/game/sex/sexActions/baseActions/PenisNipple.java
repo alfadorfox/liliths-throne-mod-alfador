@@ -317,7 +317,7 @@ public class PenisNipple {
 			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.PENIS, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.NORMAL) {
-		
+		public boolean isDisplayedAsUnavailable() {return true;} // TEMP BECAUSE I'M CURIOUS
 		@Override
 		public String getActionTitle() {
 			return "Fuck [npc2.her] nipple";

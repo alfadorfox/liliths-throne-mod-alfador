@@ -120,7 +120,7 @@ import com.lilithsthrone.world.places.AbstractPlaceType;
 
 /**
  * @since 0.1.0
- * @version 0.4.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public abstract class NPC extends GameCharacter implements XMLSaving {
@@ -3074,6 +3074,18 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 						if(clothing.getItemTags().contains(ItemTag.CHASTITY)) {
 							wantsToEquip = this.getFetishDesire(Fetish.FETISH_DENIAL).isPositive();
 						}
+						/**
+						 * Alfador inserted code here to control dom NPCs diapering their partners.
+						 */
+						// TODO: When fetishes available, add a wantsToEquip option based on NPC wanting to diaper a partner.
+						/**
+						 * if(clothing.getItemTags().contains(ItemTag.DIAPER)) {
+						 *     wantsToEquip = this.getFetishDesire(Fetish.FETISH_DIAPER_APPLIER).isPositive();
+						 * }
+						 */
+						/**
+						 * End of Alfador-inserted code.
+						 */
 					}
 					// Always auto manage clothing, as NPCs use clothing removal methods in SexManagerDefault, so clothing additions should take place after removals.
 					// If auto management was disabled, then the NPC would equip clothing onto their partner as soon as that slot became free, which makes sex feel quite disjointed

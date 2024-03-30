@@ -1411,6 +1411,7 @@ public class MainController implements Initializable {
 			CreationController.initTorsoTypeListeners();
 			CreationController.initWingSizeListeners();
 			CreationController.initWingTypeListeners();
+			CreationController.initBladderTypeListeners();
 			if (BodyChanging.getTarget().isElemental()) {
 				CreationController.initBodyMaterialListeners();
 			}

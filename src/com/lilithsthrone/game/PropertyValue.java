@@ -2,7 +2,7 @@ package com.lilithsthrone.game;
 
 /**
  * @since 0.2.2
- * @version 0.3.8.9
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum PropertyValue {
@@ -68,6 +68,16 @@ public enum PropertyValue {
 	gapeContent(true, true),
 	feralContent(true, true), // No associated fetish yet
 	muskContent(true, true), // No associated fetish yet
+	/**
+	 * Alfador inserted code here to control modded content options.
+	 */
+	abdlContent(true, true), // associated fetish NYI
+	wsContent(true, true), // associated fetish NYI
+	scatContent(false, true), // associated fetish NYI
+	inContent(false, true), // associated fetish NYI
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	cumRegenerationContent(true),
 	penetrationLimitations(true),

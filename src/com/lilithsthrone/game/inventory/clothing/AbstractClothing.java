@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.lilithsthrone.game.inventory.item.AbstractDiaper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -59,7 +60,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.0
- * @version 0.3.9.5
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public abstract class AbstractClothing extends AbstractCoreItem implements XMLSaving {
@@ -567,6 +568,9 @@ public abstract class AbstractClothing extends AbstractCoreItem implements XMLSa
 			}
 			
 			clothing = Main.game.getItemGen().generateClothing(ClothingType.getClothingTypeFromId(loadedId, slotHint), false);
+			if (clothing instanceof AbstractDiaper) {
+				((AbstractDiaper)clothing).loadDiaperValuesFromXML(parentElement, doc);
+			}
 		} catch(Exception ex) {
 			System.err.println("Warning: An instance of AbstractClothing was unable to be imported. ("+parentElement.getAttribute("id")+")");
 			return null;
@@ -853,6 +857,9 @@ public abstract class AbstractClothing extends AbstractCoreItem implements XMLSa
 			}
 		} catch(Exception ex) {
 		}
+
+		// Try to load diaper attributes:
+
 		
 		return clothing;
 	}
@@ -2063,6 +2070,13 @@ public abstract class AbstractClothing extends AbstractCoreItem implements XMLSa
 	public boolean isDirty() {
 		return dirty;
 	}
+
+	// needed because the AbstractDiaper subclass has to be able to set this in the middle of overriding what the method right below here is doing
+	// it is probably a very bad thing for me to do but the potential workarounds are limited when I don't fully understand why clothing objects
+	// need to be cloned instead of just swapping references from one inventory to another
+	protected void forceSetDirty(boolean dirty) {
+		this.dirty = dirty;
+	}
 	
 	/**
 	 * If this clothing returns true for <i>isMilkingEquipment()</i>, then it will not be dirtied by this method.
@@ -2120,7 +2134,7 @@ public abstract class AbstractClothing extends AbstractCoreItem implements XMLSa
 		
 		if(owner!=null) {
 			if(owner.removeClothing(this)) {
-				AbstractClothing c = new AbstractClothing(this) {};
+				AbstractClothing c = (this instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)this) : new AbstractClothing(this) {};
 				c.enchantmentKnown = enchantmentKnown;
 				owner.addClothing(c, false);
 				enchantmentRemovedClothing = c;

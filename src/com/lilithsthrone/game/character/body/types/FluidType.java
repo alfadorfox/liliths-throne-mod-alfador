@@ -18,7 +18,7 @@ import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.1.83
- * @version 0.3.8.2
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class FluidType {
@@ -560,7 +560,172 @@ public class FluidType {
 			Util.newArrayListOfValues("avian"),
 			Util.newArrayListOfValues()) {
 	};
-	
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	public static AbstractFluidType URINE_HUMAN = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.HUMAN,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_ANGEL = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.ANGEL,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_DEMON = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.DEMON,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_COW_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.COW_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_DOG_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.DOG_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_FOX_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.FOX_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_WOLF_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.WOLF_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_CAT_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.CAT_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_HORSE_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.HORSE_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_REINDEER_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.REINDEER_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_ALLIGATOR_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.ALLIGATOR_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_SQUIRREL_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.SQUIRREL_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_RAT_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.RAT_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_RABBIT_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.RABBIT_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_BAT_MORPH = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.BAT_MORPH,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+
+	public static AbstractFluidType URINE_HARPY = new AbstractFluidType(FluidTypeBase.URINE,
+			FluidFlavour.URINE,
+			Race.HARPY,
+			null,
+			null,
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(""),
+			Util.newArrayListOfValues(FluidModifier.MUSKY)) {
+	};
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	private static List<AbstractFluidType> allFluidTypes;
 	private static Map<AbstractFluidType, String> fluidToIdMap = new HashMap<>();

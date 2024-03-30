@@ -8,7 +8,7 @@ import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.2.1
- * @version 0.4.5.5
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum ItemTag {
@@ -27,6 +27,18 @@ public enum ItemTag {
 	SOLD_BY_FINCH, // BDSM and sex-related stuff
 	SOLD_BY_VICKY, // Weapons
 	SOLD_BY_EISEK, // Produce
+	/**
+	 * Alfador inserted code here to support diapers.
+	 */
+	SOLD_BY_ALFADOR, // Diapers and ABDL-related stuff
+	WASHABLE_DIAPER, // fluids erased when cleaned; doesn't retain dirty status from stored fluids that way
+	DIAPER, // This should be made as an AbstractDiaper, with a capacity for fluids and a tracking field for fluids
+	PULLUP, // Training panties; in the future these should have an effect on incontinence so you can actually potty train, and should pull on/off (need access to legs instead of just groin to equip)
+	HYPER_DIAPER, // No limit on absorbency! Fill it to ludicrous amounts!
+	ABDL, // Clothing that is embarrassing for anybody without ABDL fetish to wear. Medical diapers don't count!
+	/**
+	 * End of Alfador-inserted code.
+	 */
 
 	// Items with these tags can randomly spawn in encounters in the commented area
 	// Please note that due to legacy issues, clothing and weapons only use the 'DOMINION_ALLEYWAY_SPAWN' tag to determine whether or not it can randomly spawn in any area.

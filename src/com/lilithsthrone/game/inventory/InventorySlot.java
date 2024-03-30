@@ -11,7 +11,7 @@ import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.1.0
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum InventorySlot {
@@ -122,7 +122,7 @@ public enum InventorySlot {
 
 	/** Clothing slot "stomach". Used for corsets.<br/>
 	 *  Tattoo slot "stomach".*/
-	STOMACH(10, "stomach", false, false, false, "stomach") {
+	STOMACH(11, "stomach", false, false, false, "stomach") {
 		@Override
 		protected String getNameForParsing(GameCharacter character) {
 			return "stomach";
@@ -238,10 +238,10 @@ public enum InventorySlot {
 			return "[npc.feet]";
 		}
 	},
-
+	// Mod by Alfador: Changed zLayer of SOCK and STOMACH slots to 11 instead of 10 so pantyhose etc. wouldn't sometimes be worn underneath diapers
 	/** Clothing slot "calves". Used for socks.<br/>
 	 *  Tattoo slot "lower leg".*/
-	SOCK(10, "calves", true, true, false, "lower leg") {
+	SOCK(11, "calves", true, true, false, "lower leg") {
 		@Override
 		public String getPhysicallyUnavailableReason(GameCharacter character) {
 			if(!character.hasLegs()) {

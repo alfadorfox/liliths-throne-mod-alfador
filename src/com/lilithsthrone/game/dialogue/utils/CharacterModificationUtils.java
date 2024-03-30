@@ -30,40 +30,12 @@ import com.lilithsthrone.game.character.body.Leg;
 import com.lilithsthrone.game.character.body.Tail;
 import com.lilithsthrone.game.character.body.Tentacle;
 import com.lilithsthrone.game.character.body.Testicle;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAntennaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractArmType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAssType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractBreastType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEarType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEyeType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractFaceType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHairType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHornType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractLegType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractPenisType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTailType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTorsoType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractVaginaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractWingType;
+import com.lilithsthrone.game.character.body.abstractTypes.*;
 import com.lilithsthrone.game.character.body.coverings.AbstractBodyCoveringType;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringType;
 import com.lilithsthrone.game.character.body.coverings.Covering;
 import com.lilithsthrone.game.character.body.tags.BodyPartTag;
-import com.lilithsthrone.game.character.body.types.AntennaType;
-import com.lilithsthrone.game.character.body.types.ArmType;
-import com.lilithsthrone.game.character.body.types.AssType;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.EarType;
-import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.HairType;
-import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.types.TorsoType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.types.WingType;
+import com.lilithsthrone.game.character.body.types.*;
 import com.lilithsthrone.game.character.body.valueEnums.AreolaeSize;
 import com.lilithsthrone.game.character.body.valueEnums.AssSize;
 import com.lilithsthrone.game.character.body.valueEnums.BodyHair;
@@ -1394,6 +1366,50 @@ public class CharacterModificationUtils {
 				UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] wing type."
 						+ "<br/><i>Wing types which enable flight (when their size is also sufficiently large enough) are marked by an asterisk.</i>"),
 				"WING_TYPE",
+				contentSB.toString(),
+				true);
+	}
+
+	public static String getSelfTransformBladderChoiceDiv(List<AbstractRace> availableRaces) {
+		contentSB.setLength(0);
+
+		List<AbstractBladderType> sortedTypes = new ArrayList<>(BladderType.getAllBladderTypes());
+		/*
+		 * 'None' is first, then the rest of the 'no race' options.
+		 * Then, the races are sorted alphabetically.
+		 * Within a race (including 'no race'), options are sorted alphabetically.
+		 */
+		sortedTypes.sort(Comparator.comparingInt((AbstractBladderType w) -> w.getRace() == Race.NONE ? 0 : 1)
+				.thenComparing(w -> w.getRace().getName(false))
+				.thenComparing(AbstractBladderType::getTransformName));
+
+		for(AbstractBladderType bladder : sortedTypes) {
+			if((bladder.getRace() !=null && availableRaces.contains(bladder.getRace()))) {
+
+				Colour c = PresetColour.TEXT_GREY;
+
+				if(bladder.getRace() != null) {
+					c = bladder.getRace().getColour();
+				}
+
+				if(BodyChanging.getTarget().getBladder().getType() == bladder) {
+					contentSB.append(
+							"<div class='cosmetics-button active'>"
+									+ "<span style='color:"+c.toWebHexString()+";'>"+Util.capitaliseSentence(bladder.getTransformName())+"</span>"
+									+ "</div>");
+
+				} else {
+					contentSB.append(
+							"<div id='BLADDER_"+BladderType.getIdFromBladderType(bladder)+"' class='cosmetics-button'>"
+									+ "<span style='color:"+c.getShades()[0]+";'>"+Util.capitaliseSentence(bladder.getTransformName())+"</span>"
+									+ "</div>");
+				}
+			}
+		}
+
+		return applyWrapper("Bladder",
+				UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] bladder type."),
+				"BLADDER_TYPE",
 				contentSB.toString(),
 				true);
 	}

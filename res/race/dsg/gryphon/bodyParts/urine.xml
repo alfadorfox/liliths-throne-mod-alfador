@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fluid>
+    <race>dsg_gryphon</race>
+    <transformationName><![CDATA[gryphon]]></transformationName>
+    <baseFluidType>URINE</baseFluidType>
+    <flavour>URINE</flavour>
+    <namesMasculine/>
+    <namesFeminine/>
+    <descriptorsMasculine>
+        <name><![CDATA[gryphon]]></name>
+    </descriptorsMasculine>
+    <descriptorsFeminine>
+        <name><![CDATA[gryphon]]></name>
+    </descriptorsFeminine>
+    <defaultFluidModifiers>
+        <modifier>MUSKY</modifier>
+    </defaultFluidModifiers>
+</fluid>

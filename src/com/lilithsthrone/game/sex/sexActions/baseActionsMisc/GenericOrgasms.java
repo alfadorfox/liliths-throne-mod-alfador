@@ -36,6 +36,7 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
+import com.lilithsthrone.game.inventory.item.AbstractDiaper;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.CondomFailure;
 import com.lilithsthrone.game.sex.OrgasmCumTarget;
@@ -2603,7 +2604,9 @@ public class GenericOrgasms {
 			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
-		
+
+		private StringBuilder stringBuilderForAppendingDescriptions = new StringBuilder();
+
 		@Override
 		public String getActionTitle() {
 			return "Orgasm";
@@ -2628,12 +2631,58 @@ public class GenericOrgasms {
 		@Override
 		public void applyEffects() {
 			Main.game.getPlayer().getSexActionOrgasmOverride(this, Main.sex.getAvailableCumTargets(Main.game.getPlayer()).get(0), true).applyEffects();
-			if (!Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
+			if (Main.game.getPlayer().hasPenisIgnoreDildo()
+					&& !Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Main.game.getPlayer().getPenisOrgasmCumQuantity() != CumProduction.ZERO_NONE) {
-				Main.game.getPlayer().getLowestZLayerCoverableArea(CoverableArea.PENIS).setDirty(Main.game.getPlayer(), true);
+				/**
+				 * Alfador inserted code here to support diaper use.
+				 */
+				AbstractClothing penisClothing = Main.game.getPlayer().getLowestZLayerCoverableArea(CoverableArea.PENIS);
+				if (penisClothing != null && penisClothing.getItemTags(penisClothing.getSlotEquippedTo()).contains(ItemTag.DIAPER)) {
+					Integer diaperLeak = ((AbstractDiaper)penisClothing).absorb(Main.game.getPlayer().getCum(), Main.game.getPlayer().getPenisRawOrgasmCumQuantity());
+					if (diaperLeak > 0) {
+						String leakString = Main.sex.getCharacterPerformingAction().getPenisRawOrgasmCumQuantity() == diaperLeak ? "[npc.NamePos] utterly saturated "+penisClothing.getName()+" cannot hold any of [npc.her] [npc.cum], and "
+								: "[npc.NamePos] "+penisClothing.getName()+" "+(penisClothing.getClothingType().isPlural()?"absorb":"absorbs")+" some of [npc.her] [npc.cum], but ";
+						AbstractClothing thighClothing = Main.game.getPlayer().getLowestZLayerCoverableArea(CoverableArea.THIGHS);
+						if (thighClothing != null) {
+							thighClothing.setDirty(Main.game.getPlayer(), true);
+							stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+							stringBuilderForAppendingDescriptions.append("[style.italicsCum(");
+							stringBuilderForAppendingDescriptions.append(leakString);
+							stringBuilderForAppendingDescriptions.append("[npc.her] "+thighClothing.getName()+" "+(thighClothing.getClothingType().isPlural()?"are":"is")+" dirtied from leakage!");
+							stringBuilderForAppendingDescriptions.append(")]");
+							stringBuilderForAppendingDescriptions.append("</p>");
+						} else {
+							stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+							stringBuilderForAppendingDescriptions.append("[style.italicsCum(");
+							stringBuilderForAppendingDescriptions.append(leakString);
+							stringBuilderForAppendingDescriptions.append((penisClothing.getClothingType().isPlural()?"they":"it")+" leaks!");
+							stringBuilderForAppendingDescriptions.append(")]");
+							stringBuilderForAppendingDescriptions.append("</p>");
+						}
+					} else {
+						stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+						stringBuilderForAppendingDescriptions.append("[style.italicsCum(");
+						stringBuilderForAppendingDescriptions.append("[npc.NamePos] "+penisClothing.getName()+" "+(penisClothing.getClothingType().isPlural()?"absorb":"absorbs")+" all of [npc.her] [npc.cum]!");
+						stringBuilderForAppendingDescriptions.append(")]");
+						stringBuilderForAppendingDescriptions.append("</p>");
+					}
+				} else {
+					Main.game.getPlayer().getLowestZLayerCoverableArea(CoverableArea.PENIS).setDirty(Main.game.getPlayer(), true);
+				}
 			}
 		}
+
+		@Override
+		public String applyEffectsString() {
+			String returnEffectString = stringBuilderForAppendingDescriptions.toString();
+			this.stringBuilderForAppendingDescriptions.setLength(0);
+			return returnEffectString;
+		}
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		@Override
 		public boolean endsSex() {
@@ -8280,6 +8329,7 @@ public class GenericOrgasms {
 			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
+		private StringBuilder stringBuilderForAppendingDescriptions;
 		@Override
 		public String getActionTitle() {
 			return "Orgasm";
@@ -8303,12 +8353,58 @@ public class GenericOrgasms {
 		@Override
 		public void applyEffects() {
 			Main.sex.getCharacterPerformingAction().getSexActionOrgasmOverride(this, Main.sex.getAvailableCumTargets(Main.sex.getCharacterPerformingAction()).get(0), true).applyEffects();
-			if (!Main.sex.getCharacterPerformingAction().isCoverableAreaExposed(CoverableArea.PENIS)
+			if (Main.sex.getCharacterPerformingAction().hasPenisIgnoreDildo()
+					&& !Main.sex.getCharacterPerformingAction().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.sex.getCharacterPerformingAction().isWearingCondom()
 					&& Main.sex.getCharacterPerformingAction().getPenisOrgasmCumQuantity() != CumProduction.ZERO_NONE) {
-				Main.sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.PENIS).setDirty(Main.sex.getCharacterPerformingAction(), true);
+				/**
+				 * Alfador inserted code here to support diaper use.
+				 */
+				AbstractClothing penisClothing = Main.sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.PENIS);
+						if (penisClothing != null && penisClothing.getItemTags(penisClothing.getSlotEquippedTo()).contains(ItemTag.DIAPER)) {
+					Integer diaperLeak = ((AbstractDiaper)penisClothing).absorb(Main.sex.getCharacterPerformingAction().getCum(), Main.sex.getCharacterPerformingAction().getPenisRawOrgasmCumQuantity());
+					if (diaperLeak > 0) {
+						String leakString = Main.sex.getCharacterPerformingAction().getPenisRawOrgasmCumQuantity() == diaperLeak ? "[npc.NamePos] utterly saturated "+penisClothing.getName()+" cannot hold any of [npc.her] [npc.cum], and "
+								: "[npc.NamePos] "+penisClothing.getName()+" "+(penisClothing.getClothingType().isPlural()?"absorb":"absorbs")+" some of [npc.her] [npc.cum], but ";
+						AbstractClothing thighClothing = Main.sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.THIGHS);
+						if (thighClothing != null) {
+							thighClothing.setDirty(Main.sex.getCharacterPerformingAction(), true);
+							stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+							stringBuilderForAppendingDescriptions.append("[style.italicsCum(");
+							stringBuilderForAppendingDescriptions.append(leakString);
+							stringBuilderForAppendingDescriptions.append("[npc.her] "+thighClothing.getName()+" "+(thighClothing.getClothingType().isPlural()?"are":"is")+" dirtied from leakage!");
+							stringBuilderForAppendingDescriptions.append(")]");
+							stringBuilderForAppendingDescriptions.append("</p>");
+						} else {
+							stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+							stringBuilderForAppendingDescriptions.append("[style.italicsCum(");
+							stringBuilderForAppendingDescriptions.append(leakString);
+							stringBuilderForAppendingDescriptions.append((penisClothing.getClothingType().isPlural()?"they":"it")+" leaks!");
+							stringBuilderForAppendingDescriptions.append(")]");
+							stringBuilderForAppendingDescriptions.append("</p>");
+						}
+					} else {
+						stringBuilderForAppendingDescriptions.append("<p style='text-align:center;'>");
+						stringBuilderForAppendingDescriptions.append("[style.italicsCum(");
+						stringBuilderForAppendingDescriptions.append("[npc.NamePos] "+penisClothing.getName()+" "+(penisClothing.getClothingType().isPlural()?"absorb":"absorbs")+" all of [npc.her] [npc.cum]!");
+						stringBuilderForAppendingDescriptions.append(")]");
+						stringBuilderForAppendingDescriptions.append("</p>");
+					}
+				} else {
+							Main.sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.PENIS).setDirty(Main.sex.getCharacterPerformingAction(), true);
+				}
 			}
 		}
+
+		@Override
+		public String applyEffectsString() {
+			String returnEffectString = stringBuilderForAppendingDescriptions.toString();
+			this.stringBuilderForAppendingDescriptions.setLength(0);
+			return returnEffectString;
+		}
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		@Override
 		public boolean endsSex() {
 			return Main.sex.getCharacterPerformingAction().getSexActionOrgasmOverride(this, Main.sex.getAvailableCumTargets(Main.sex.getCharacterPerformingAction()).get(0), false).isEndsSex();

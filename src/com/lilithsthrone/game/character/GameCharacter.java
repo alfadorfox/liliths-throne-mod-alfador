@@ -31,6 +31,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import com.lilithsthrone.game.character.body.*;
+import com.lilithsthrone.game.character.body.abstractTypes.*;
+import com.lilithsthrone.game.inventory.item.AbstractDiaper;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -49,37 +52,6 @@ import com.lilithsthrone.game.character.attributes.IntelligenceLevel;
 import com.lilithsthrone.game.character.attributes.LustLevel;
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.attributes.ObedienceLevelBasic;
-import com.lilithsthrone.game.character.body.Arm;
-import com.lilithsthrone.game.character.body.Body;
-import com.lilithsthrone.game.character.body.BodyPartInterface;
-import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidGirlCum;
-import com.lilithsthrone.game.character.body.FluidInterface;
-import com.lilithsthrone.game.character.body.FluidMilk;
-import com.lilithsthrone.game.character.body.Penis;
-import com.lilithsthrone.game.character.body.Testicle;
-import com.lilithsthrone.game.character.body.Vagina;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAntennaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractArmType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAssType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractBreastType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEarType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEyeType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractFaceType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractFluidType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHairType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHornType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractLegType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractMouthType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractNippleType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractPenisType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTailType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTentacleType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTongueType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTorsoType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractVaginaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractWingType;
 import com.lilithsthrone.game.character.body.coverings.AbstractBodyCoveringType;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringCategory;
 import com.lilithsthrone.game.character.body.coverings.BodyCoveringType;
@@ -305,7 +277,7 @@ import com.lilithsthrone.world.places.PlaceUpgrade;
  * The class for all the game's characters. I think this is the biggest class in the game.
  * 
  * @since 0.1.0
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia, orvail(relationship section)
  */
 public abstract class GameCharacter implements XMLSaving {
@@ -23670,7 +23642,7 @@ public abstract class GameCharacter implements XMLSaving {
 	public String equipClothingFromInventory(AbstractClothing newClothing, InventorySlot slotToEquipInto, boolean automaticClothingManagement, GameCharacter characterClothingEquipper, GameCharacter fromCharactersInventory) {
 		fromCharactersInventory.removeClothing(newClothing);
 		
-		AbstractClothing clonedClothing = new AbstractClothing(newClothing) {};
+		AbstractClothing clonedClothing = (newClothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)newClothing) : new AbstractClothing(newClothing) {};
 		
 		boolean wasAbleToEquip = inventory.isAbleToEquip(clonedClothing, slotToEquipInto, true, automaticClothingManagement, this, characterClothingEquipper);
 
@@ -23727,7 +23699,7 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 		}
 
-        AbstractClothing clonedClothing = new AbstractClothing(newClothing) {};
+        AbstractClothing clonedClothing = (newClothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)newClothing) : new AbstractClothing(newClothing) {};
 
 		inventory.getClothingCurrentlyEquipped().add(clonedClothing);
         clonedClothing.setSlotEquippedTo(slotToEquipInto);
@@ -23745,7 +23717,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public String equipClothingFromNowhere(AbstractClothing newClothing, InventorySlot slotToEquipInto, boolean automaticClothingManagement, GameCharacter characterClothingEquipper) {
-		AbstractClothing clonedClothing = new AbstractClothing(newClothing) {};
+		AbstractClothing clonedClothing = (newClothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)newClothing) : new AbstractClothing(newClothing) {};
 		
 		boolean wasAbleToEquip = inventory.isAbleToEquip(clonedClothing, slotToEquipInto, true, automaticClothingManagement, this, characterClothingEquipper);
 
@@ -23773,7 +23745,7 @@ public abstract class GameCharacter implements XMLSaving {
 	public String equipClothingFromGround(AbstractClothing newClothing, InventorySlot slotToEquipInto, boolean automaticClothingManagement, GameCharacter characterClothingEquipper) {
 		Main.game.getWorlds().get(getWorldLocation()).getCell(getLocation()).getInventory().removeClothing(newClothing);
 		
-		AbstractClothing clonedClothing = new AbstractClothing(newClothing) {};
+		AbstractClothing clonedClothing = (newClothing instanceof AbstractDiaper) ? new AbstractDiaper((AbstractDiaper)newClothing) : new AbstractClothing(newClothing) {};
 		
 		boolean wasAbleToEquip = inventory.isAbleToEquip(clonedClothing, slotToEquipInto, true, automaticClothingManagement, this, characterClothingEquipper);
 
@@ -30915,6 +30887,20 @@ public abstract class GameCharacter implements XMLSaving {
 	public String getWingPronoun() {
 		return body.getWing().getType().getPronoun(this);
 	}
+
+    /**
+     * Alfador inserted code here for bladder support.
+     */
+    // ------------------------------ Bladder: ------------------------------ //
+    public Bladder getBladder() {
+        return body.getBladder();
+    }
+    public String setBladderType(AbstractBladderType type) {
+        return body.getBladder().setType(this, type);
+    }
+    /**
+     * End of Alfador-inserted code.
+     */
 	
 	public abstract boolean isAbleToBeImpregnated();
 	

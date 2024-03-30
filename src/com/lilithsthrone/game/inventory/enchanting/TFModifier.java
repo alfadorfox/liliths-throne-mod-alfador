@@ -21,7 +21,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.7
- * @version 0.3.5.5
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum TFModifier {
@@ -314,6 +314,19 @@ public enum TFModifier {
 			"modifier_circle_resistance",
 			PresetColour.BASE_GREEN,
 			Rarity.COMMON),
+
+	/**
+	 * Alfador inserted code here to control diaper capacity.
+	 */
+	CLOTHING_DIAPER("diaper absorbency",
+			"Makes a diaper soak up more fluid before becoming dirty or leaking.",
+			"diaper absorbency",
+			"modifier_circle_resistance", // TODO: Placeholder, uses condom enchant value
+			PresetColour.BASE_YELLOW,
+			Rarity.COMMON),
+	/**
+	 * End of Alfador-inserted code.
+	 */
 
 	CLOTHING_VIBRATION("vibration",
 			"Makes this piece of clothing vibrate when worn.",

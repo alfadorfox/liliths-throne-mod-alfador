@@ -2,7 +2,7 @@ package com.lilithsthrone.game.character.body.types;
 
 /**
  * @since 0.1.69.9
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum BodyPartType {
@@ -53,7 +53,17 @@ public enum BodyPartType {
 	
 	// Spinneret:
 
-	SPINNERET("spinneret");
+	SPINNERET("spinneret"),
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	// Bladder:
+	BLADDER("bladder"),
+	URINE("urine");
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	private String name;
 	private BodyPartType(String name){

@@ -25,7 +25,7 @@ import com.lilithsthrone.utils.Util.Value;
 
 /**
  * @since 0.3.8.9
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public abstract class AbstractPenisType implements BodyPartTypeInterface {
@@ -34,8 +34,24 @@ public abstract class AbstractPenisType implements BodyPartTypeInterface {
 	private boolean fromExternalFile;
 	
 	// Maps the name to weighting for use in random selection:
-	protected static final Map<String, Integer> BASE_NAMES_SINGULAR = Util.newHashMapOfValues(new Value<>("cock", 3), new Value<>("dick", 2), new Value<>("shaft", 1));
-	protected static final Map<String, Integer> BASE_NAMES_PLURAL = Util.newHashMapOfValues(new Value<>("cocks", 3), new Value<>("dicks", 2), new Value<>("shafts", 1));
+	protected static final Map<String, Integer> BASE_NAMES_SINGULAR = Util.newHashMapOfValues(
+			new Value<>("cock", 3),
+			new Value<>("dick", 2),
+			new Value<>("shaft", 1),
+			new Value<>("peen", 1),
+			new Value<>("weiner", 1),
+			new Value<>("willie", 1),
+			new Value<>("pee-pee", 1),
+			new Value<>("winkie", 1)); // Alfador has added some cuter names
+	protected static final Map<String, Integer> BASE_NAMES_PLURAL = Util.newHashMapOfValues(
+			new Value<>("cocks", 3),
+			new Value<>("dicks", 2),
+			new Value<>("shafts", 1),
+			new Value<>("peens", 1),
+			new Value<>("weiners", 1),
+			new Value<>("willies", 1),
+			new Value<>("pee-pees", 1),
+			new Value<>("winkies", 1));
 	
 	private AbstractBodyCoveringType coveringType;
 	private AbstractRace race;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fluid>
+    <race>dsg_shark</race>
+    <transformationName><![CDATA[shark]]></transformationName>
+    <baseFluidType>URINE</baseFluidType>
+    <flavour>URINE</flavour>
+    <namesMasculine/>
+    <namesFeminine/>
+    <descriptorsMasculine>
+        <name><![CDATA[shark]]></name>
+    </descriptorsMasculine>
+    <descriptorsFeminine>
+        <name><![CDATA[shark]]></name>
+    </descriptorsFeminine>
+    <defaultFluidModifiers>
+        <modifier>MUSKY</modifier>
+    </defaultFluidModifiers>
+</fluid>

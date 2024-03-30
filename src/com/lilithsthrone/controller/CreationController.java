@@ -4,6 +4,8 @@ import java.time.Month;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.lilithsthrone.game.character.body.abstractTypes.*;
+import com.lilithsthrone.game.character.body.types.*;
 import org.w3c.dom.events.EventTarget;
 
 import com.lilithsthrone.controller.eventListeners.tooltips.TooltipInformationEventListener;
@@ -18,36 +20,6 @@ import com.lilithsthrone.game.character.body.Eye;
 import com.lilithsthrone.game.character.body.Horn;
 import com.lilithsthrone.game.character.body.Tail;
 import com.lilithsthrone.game.character.body.Testicle;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAntennaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractArmType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractAssType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractBreastType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEarType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractEyeType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractFaceType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHairType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractHornType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractLegType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractPenisType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTailType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractTorsoType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractVaginaType;
-import com.lilithsthrone.game.character.body.abstractTypes.AbstractWingType;
-import com.lilithsthrone.game.character.body.types.AntennaType;
-import com.lilithsthrone.game.character.body.types.ArmType;
-import com.lilithsthrone.game.character.body.types.AssType;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.EarType;
-import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.HairType;
-import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.types.TorsoType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.types.WingType;
 import com.lilithsthrone.game.character.body.valueEnums.AreolaeSize;
 import com.lilithsthrone.game.character.body.valueEnums.AssSize;
 import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
@@ -2405,6 +2377,19 @@ public class CreationController {
 			if (MainController.document.getElementById(id) != null) {
 				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e->{
 					BodyChanging.getTarget().setWingType(wingType);
+					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
+				}, false);
+			}
+		}
+	}
+
+	// Bladder initBladderTypeListeners
+	public static void initBladderTypeListeners() {
+		for (AbstractBladderType bladderType : BladderType.getAllBladderTypes()) {
+			String id = "BLADDER_"+BladderType.getIdFromBladderType(bladderType);
+			if (MainController.document.getElementById(id) != null) {
+				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e->{
+					BodyChanging.getTarget().setBladderType(bladderType);
 					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
 				}, false);
 			}

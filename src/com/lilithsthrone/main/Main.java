@@ -65,7 +65,7 @@ import javax.xml.transform.TransformerFactory;
 
 /**
  * @since 0.1.0
- * @version 0.4.8.2
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class Main extends Application {
@@ -87,7 +87,7 @@ public class Main extends Application {
 	public static final String AUTHOR = "Innoxia";
 	public static final String GAME_NAME = "Lilith's Throne";
 	public static final String VERSION_NUMBER = "0.4.9"; // Remember to update pom.xml!
-	public static final String VERSION_DESCRIPTION = "Alpha";
+	public static final String VERSION_DESCRIPTION = "Alpha (modded) Alfador's mod v0.1.0"; // version number needs to remain same for proper save loading!
 
 	public static boolean quickSaved = false;
 	
@@ -106,7 +106,11 @@ public class Main extends Application {
 	
 	public static String disclaimer = "<h6 style='text-align: center; color:"+PresetColour.GENERIC_ARCANE.toWebHexString()+";'>You must read and agree to the following in order to play this game!</h6>"
 
-			+ "<p>This game is a <b>fictional</b> text-based erotic RPG. All content contained within this game forms part of a fictional universe that is not related to real-life places, people or events.<br/><br/>"
+			+ "<p><b>EXTRA DISCLAIMER: As this version of the game is modded, additional adult content will be present!"
+			+ " One specific caveat is that, as of this writing scat content is not included but may be in a future version of this mod!"
+			+ " Exercise caution and check the Fetish Options.</b><br/><br/>"
+
+			+ "This game is a <b>fictional</b> text-based erotic RPG. All content contained within this game forms part of a fictional universe that is not related to real-life places, people or events.<br/><br/>"
 
 			+ " All of the characters that appear in this story are fictional entities who have given their consent to appear and act in this story."
 			+ " If you find yourself concerned for the characters in the story then please be reassured that they are all consenting adults who are speaking lines from a script."

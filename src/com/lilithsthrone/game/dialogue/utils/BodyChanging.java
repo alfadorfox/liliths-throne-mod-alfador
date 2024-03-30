@@ -766,6 +766,14 @@ public class BodyChanging {
 						+ CharacterModificationUtils.getSelfTransformWingChoiceDiv(allRaces, false)
 						+ CharacterModificationUtils.getSelfTransformWingSizeDiv()
 					+"</div>");
+				if(Main.getProperties().hasValue(PropertyValue.wsContent)) {
+					UtilText.nodeContentSB.append("<div style='clear:left;'>"
+							+ CharacterModificationUtils.getSelfTransformBladderChoiceDiv(allRaces) // TODO: set urine qualities!
+//							+ CharacterModificationUtils.getSelfTransformBladderSizeDiv() // TODO: set storage, regeneration, and continence
+//							+ CharacterModificationUtils.getSelfTransformBladderRegenDiv()
+//							+ CharacterModificationUtils.getSelfTransformBladderContinenceDiv() // TODO: continence behind option when settable
+							+"</div>");
+				}
 			}
 			
 			for(Entry<AbstractBodyCoveringType, Value<AbstractRace, List<String>>> entry : SuccubisSecrets.coveringsNamesMap.entrySet()){

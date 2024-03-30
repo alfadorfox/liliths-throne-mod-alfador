@@ -16,11 +16,7 @@ import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.TFModifier;
 import com.lilithsthrone.game.inventory.enchanting.TFPotency;
-import com.lilithsthrone.game.inventory.item.AbstractFilledBreastPump;
-import com.lilithsthrone.game.inventory.item.AbstractFilledCondom;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
+import com.lilithsthrone.game.inventory.item.*;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
@@ -32,7 +28,7 @@ import com.lilithsthrone.utils.colours.ColourListPresets;
 
 /**
  * @since 0.3.9
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class ItemGeneration {
@@ -180,6 +176,16 @@ public class ItemGeneration {
 			colours.remove((int)entry.getKey());
 			colours.add(entry.getKey(), replacement);
 		}
+
+		/**
+		 * Alfador inserted code here to support diaper generation.
+		 */
+		if(clothingType.getDefaultItemTags().contains(ItemTag.DIAPER)) {
+			return new AbstractDiaper(clothingType, colours, allowRandomEnchantment) {};
+		}
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		return new AbstractClothing(clothingType, colours, allowRandomEnchantment) {};
 	}
@@ -243,6 +249,16 @@ public class ItemGeneration {
 			colours.remove((int)entry.getKey());
 			colours.add(entry.getKey(), replacement);
 		}
+
+		/**
+		 * Alfador inserted code here to support diaper generation.
+		 */
+		if(clothingType.getDefaultItemTags().contains(ItemTag.DIAPER)) {
+			return new AbstractDiaper(clothingType, colours, effects) {};
+		}
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		return new AbstractClothing(clothingType, colours, effects) {};
 	}

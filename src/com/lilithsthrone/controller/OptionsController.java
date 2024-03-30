@@ -38,7 +38,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.4.6.4
- * @version 0.4.6.4
+ * @version 0.4.9_alfador0.1.0
  * @author Maxis010, Innoxia
  */
 public class OptionsController {
@@ -649,7 +649,17 @@ public class OptionsController {
 				new Util.Value<>("INFLATION_CONTENT", PropertyValue.inflationContent),
 				new Util.Value<>("AUTO_SEX_CLOTHING_MANAGEMENT", PropertyValue.autoSexClothingManagement),
 				new Util.Value<>("AUTO_SEX_CLOTHING_STRIP", PropertyValue.autoSexStrip),
-				new Util.Value<>("RAPE_PLAY_BY_DEFAULT", PropertyValue.rapePlayAtSexStart)));
+				new Util.Value<>("RAPE_PLAY_BY_DEFAULT", PropertyValue.rapePlayAtSexStart),
+				/**
+				 * Alfador inserted code here to control modded content options.
+				 */
+				new Util.Value<>("ABDL", PropertyValue.abdlContent),
+				new Util.Value<>("WATERSPORTS", PropertyValue.wsContent),
+				new Util.Value<>("SCAT", PropertyValue.scatContent),
+				new Util.Value<>("INCONTINENCE", PropertyValue.inContent)));
+				/**
+				 * End of Alfador-inserted code.
+				 */
 	}
 	
 	public static void initBodiesListeners() {

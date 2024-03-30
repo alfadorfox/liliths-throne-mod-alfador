@@ -19,7 +19,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.0
- * @version 0.4.0
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class BodyCoveringType {
@@ -854,6 +854,28 @@ public class BodyCoveringType {
 			null,
 			null) {
 	};
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	public static AbstractBodyCoveringType URINE = new AbstractBodyCoveringType(
+			BodyCoveringCategory.FLUID,
+			"",
+			false,
+			"urine",
+			"urine",
+			Util.newArrayListOfValues(CoveringModifier.FLUID),
+			null,
+			Util.newHashMapOfValues(new Value<>(CoveringPattern.FLUID, 1)),
+			null,
+			Util.newArrayListOfValues(PresetColour.COVERING_YELLOW),
+			PresetColour.allCoveringColours,
+			null,
+			null) {
+	};
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	
 	// Makeup:

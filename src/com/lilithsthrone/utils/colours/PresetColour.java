@@ -14,7 +14,7 @@ import com.lilithsthrone.utils.Util.Value;
 
 /**
  * @since 0.1.0
- * @version 0.3.7
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class PresetColour {
@@ -403,6 +403,13 @@ public class PresetColour {
 	public static Colour MILK = new Colour(false, BaseColour.YELLOW_PALE, "pale yellow", Util.newArrayListOfValues("milk", "lactation")) {};
 	public static Colour CUM = new Colour(false, BaseColour.BLUE_PALE, "pale blue", Util.newArrayListOfValues("cum", "cummed")) {};
 	public static Colour GIRLCUM = new Colour(false, BaseColour.PINK_PALE, "pale pink", Util.newArrayListOfValues("girlcum", "gcum")) {};
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	public static Colour URINE = new Colour(false, BaseColour.YELLOW_PALE, "pale yellow", Util.newArrayListOfValues("urine", "urination", "pee", "peeing")) {};
+	/**
+	 * End of Alfador-inserted code.
+	 */
 
 	public static Colour EGG = new Colour(false, BaseColour.YELLOW_PALE, "pale yellow", Util.newArrayListOfValues("egg")) {};
 	

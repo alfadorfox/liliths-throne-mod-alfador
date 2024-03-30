@@ -10,7 +10,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.2.0
- * @version 0.3.8.2
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum FluidTypeBase {
@@ -19,13 +19,23 @@ public enum FluidTypeBase {
 			BodyCoveringType.CUM,
 			PresetColour.CUM),
 	
-	GIRLCUM(Util.newArrayListOfValues("girlcum"),
-			BodyCoveringType.GIRL_CUM,
+	GIRLCUM(Util.newArrayListOfValues("vaginal fluid", "discharge", "cunny juice"), // Alfador has changed this as always calling it "girlcum" isn't fair to characters who aren't girls but have a vagina.
+			BodyCoveringType.GIRL_CUM, // ...not going to attempt to refactor the enums, heck no
 			PresetColour.GIRLCUM),
 	
 	MILK(Util.newArrayListOfValues("milk"),
 			BodyCoveringType.MILK,
-			PresetColour.MILK);
+			PresetColour.MILK),
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	URINE(Util.newArrayListOfValues("urine", "pee", "piss"),
+			BodyCoveringType.URINE,
+			PresetColour.URINE);
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	private List<String> names;
 	private AbstractBodyCoveringType coveringType;

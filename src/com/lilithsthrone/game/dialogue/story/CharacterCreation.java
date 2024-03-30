@@ -69,7 +69,7 @@ import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.0
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public class CharacterCreation {
@@ -445,7 +445,13 @@ public class CharacterCreation {
 	}
 	
 	private static void spawnClothingInArea() {
-		
+		/**
+		 * Alfador inserted code here to add a diaper in the prologue as a workaround until the diaper shop is implemented.
+		 */
+		generateClothingOnFloor(ClothingType.getClothingTypeFromId("alfador_diaper_cloth_diaper"), PresetColour.CLOTHING_WHITE, PresetColour.CLOTHING_BRASS, PresetColour.CLOTHING_WHITE);
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		switch(Main.game.getPlayer().getFemininity()) {
 			case MASCULINE:

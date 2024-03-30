@@ -10,7 +10,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.83
- * @version 0.3.9
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia
  */
 public enum FluidFlavour {
@@ -22,10 +22,21 @@ public enum FluidFlavour {
 	MILK("milk", PresetColour.MILK,
 			Util.newArrayListOfValues(
 					"creamy")),
-	
+
 	GIRL_CUM("girlcum", PresetColour.GIRLCUM,
 			Util.newArrayListOfValues(
 					"sweet")),
+
+	/**
+	 * Alfador inserted code here to support fluid urine.
+	 */
+	URINE("urine", PresetColour.URINE,
+			Util.newArrayListOfValues(
+					"salty",
+					"bitter")),
+	/**
+	 * End of Alfador-inserted code.
+	 */
 	
 	FLAVOURLESS("flavourless", PresetColour.BASE_GREY,
 			Util.newArrayListOfValues(
@@ -169,6 +180,7 @@ public enum FluidFlavour {
 		list.remove(CUM);
 		list.remove(MILK);
 		list.remove(GIRL_CUM);
+		list.remove(URINE);
 		return list;
 	}
 }

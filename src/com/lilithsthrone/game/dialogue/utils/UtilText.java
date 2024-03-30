@@ -227,15 +227,15 @@ import com.lilithsthrone.world.places.AbstractPlaceUpgrade;
 import com.lilithsthrone.world.places.PlaceType;
 import com.lilithsthrone.world.places.PlaceUpgrade;
 
-import jdk.nashorn.api.scripting.NashornScriptEngine;
-import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
+//import jdk.nashorn.api.scripting.NashornScriptEngine;
+//import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
 // Use the following imports when using the org.openjdk.nashorn dependency:
-//import org.openjdk.nashorn.api.scripting.NashornScriptEngine;
-//import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
+import org.openjdk.nashorn.api.scripting.NashornScriptEngine;
+import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 /**
  * @since 0.1.0
- * @version 0.4
+ * @version 0.4.9_alfador0.1.0
  * @author Innoxia, Pimvgd, AlacoGit, Tad Unlikely
  */
 public class UtilText {
@@ -5516,6 +5516,22 @@ public class UtilText {
 				Util.newArrayListOfValues("wing"),
 				Util.newArrayListOfValues("wings"),
 				BodyPartType.WING);
+
+		/**
+		 * Alfador inserted code here to support fluid urine.
+		 */
+		addStandardParsingCommands(
+				Util.newArrayListOfValues("bladder"),
+				Util.newArrayListOfValues("bladders"),
+				BodyPartType.BLADDER);
+
+		addStandardParsingCommands(
+				Util.newArrayListOfValues("urine"),
+				Util.newArrayListOfValues("urines"),
+				BodyPartType.URINE);
+		/**
+		 * End of Alfador-inserted code.
+		 */
 		
 		
 		// Special body parts:
@@ -10613,6 +10629,16 @@ public class UtilText {
 				return character.getBody().getVagina().getGirlcum();
 			case WING:
 				return character.getBody().getWing();
+			/**
+			 * Alfador inserted code here to support fluid urine.
+			 */
+			case BLADDER:
+				return character.getBody().getBladder();
+			case URINE:
+				return character.getBody().getBladder().getUrine();
+				/**
+				 * End of Alfador-inserted code.
+				 */
 			case GENERIC:
 			case SPINNERET: //TODO?
 				return null;
