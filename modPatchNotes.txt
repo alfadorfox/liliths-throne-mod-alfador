@@ -1,0 +1,25 @@
+Mod patch notes for 0.1.1
+Updated imports and pom.xml to work better with the Windows exe version
+Bladders now default to human on loading a save file, for compatibility with old save files. Currently the only way to change them (and therefore urine type) is the debug menu, but bladder transformation and urine enchantments are Coming Soon.
+Bugfix: Transforming your bladder after wetting a diaper caused NPE when trying to read the old urine from the HashMap, since it changed the racial type instead of creating a new fluid, which altered the hashCode.
+
+---------------------
+
+Mod release notes for 0.1.0
+FIRST RELEASE!
+Major content included:
+there is a diaper
+you can pee in it
+you can also cum in it
+you can even pee in your grownup clothes if you want
+
+* There is a diaper among the default clothing available at character creation. Currently there's no other way to get a diaper aside from the debug menu, so you have to put it on in the prologue or you won't have a diaper till the next version!
+* The way I implemented save loading, the bladder is a required body part which means it will fail to load old save files. That wasn't as much a priority in this version since you have to start a new game to get a diaper anyway.
+* You can, however, at least save and load the game with a diaper equipped or in your inventory and it will correctly save and load the fluids inside and not fail to load if it's in your inventory (This was harder than it sounds!).
+* To pee your pants, get into a sex scene (including masturbation). Peeing yourself should be under the "Self actions" tab, highlighted in yellow.
+* Diapers have a limited capacity, and will start to leak half the fluid put into them when they're at half capacity, and all further fluid once at capacity. They always count as "dirty" when above half capacity, but can also be dirtied by external events. (Hyper diapers, implemented but not created and tested yet, should ignore capacity restrictions and never leak, but still count as dirty at 50% of their base capacity.)
+* The current diaper is a cloth diaper, which can be washed; anything that washes clothing will remove all fluids stored within. Any disposable diaper implemented later ought to not do this (untestable yet) but can be sold for the value of the contained fluids (assumed to be magically extracted).
+* Diaper leaks will propagate outwards among the clothing covering the groin; whatever fluid leaks will soak clothing until it encounters either another diaper object or the floor. (Peeing your pants while not wearing a diaper will obviously just soak everything.)
+* Wearing your diaper will also collect cum and vaginal squirts. Selecting the diaper in your inventory will show you how much of each fluid it contains. Other fluid leaks will eventually be treated exactly the same, but for now just respect the same threshold values for half absorption and full leaks, and stain thigh clothing if there are any leaks.
+* The debug menu (accessed by typing "buggy" anywhere) allows you to transform your bladder; currently this only allows you to change the associated race/species of the bladder, which changes the type of urine (which the diaper will show as separately tracked fluids). Eventually there will be options to change urine color and flavor as with other bodily fluids.
+There's not much but I hope I've laid the foundation for more to come!

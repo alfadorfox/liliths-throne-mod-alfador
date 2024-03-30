@@ -65,7 +65,7 @@ import javax.xml.transform.TransformerFactory;
 
 /**
  * @since 0.1.0
- * @version 0.4.9_alfador0.1.0
+ * @version 0.4.9_alfador0.1.1
  * @author Innoxia
  */
 public class Main extends Application {
@@ -87,7 +87,7 @@ public class Main extends Application {
 	public static final String AUTHOR = "Innoxia";
 	public static final String GAME_NAME = "Lilith's Throne";
 	public static final String VERSION_NUMBER = "0.4.9"; // Remember to update pom.xml!
-	public static final String VERSION_DESCRIPTION = "Alpha (modded) Alfador's mod v0.1.0"; // version number needs to remain same for proper save loading!
+	public static final String VERSION_DESCRIPTION = "Alpha (modded) Alfador's mod v0.1.1"; // version number needs to remain same for proper save loading!
 
 	public static boolean quickSaved = false;
 	

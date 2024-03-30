@@ -93,7 +93,7 @@ import com.lilithsthrone.utils.colours.PresetColour;
 
 /**
  * @since 0.1.0
- * @version 0.4.9_alfador0.1.0
+ * @version 0.4.9_alfador0.1.1
  * @author Innoxia
  */
 public class Body implements XMLSaving {
@@ -1695,12 +1695,23 @@ public class Body implements XMLSaving {
 		 */
 		// **************** Bladder **************** //
 		Element bladder = (Element)parentElement.getElementsByTagName("bladder").item(0);
-		Bladder importedBladder = new Bladder(BladderType.getBladderTypeFromId(bladder.getAttribute("type")),
-				Integer.valueOf(bladder.getAttribute("urineStorage")),
-				Integer.valueOf(bladder.getAttribute("continencePercent")));
-		importedBladder.urineRegeneration = Integer.valueOf(bladder.getAttribute("urineRegeneration"));
-		importedBladder.urineStored = Float.valueOf(bladder.getAttribute("urineStored"));
-		importedBladder.urine = FluidUrine.loadFromXML(parentElement, doc, importedBladder.getType().getFluidType());
+		Bladder importedBladder;
+		if (bladder == null) { // handling for old save files; you get a human bladder by default!
+			importedBladder = new Bladder(BladderType.HUMAN, BladderType.DEFAULT_BLADDER_CAPACITY, BladderType.DEFAULT_BLADDER_CONTINENCE);
+		} else {
+			importedBladder = new Bladder(BladderType.getBladderTypeFromId(bladder.getAttribute("type")),
+					Integer.valueOf(bladder.getAttribute("urineStorage")),
+					Integer.valueOf(bladder.getAttribute("continencePercent")));
+			importedBladder.urineRegeneration = Integer.valueOf(bladder.getAttribute("urineRegeneration"));
+			importedBladder.urineStored = Float.valueOf(bladder.getAttribute("urineStored"));
+			importedBladder.urine = FluidUrine.loadFromXML(parentElement, doc, importedBladder.getType().getFluidType());
+		}
+		Main.game.getCharacterUtils().appendToImportLog(log, "<br/><br/>Body: Bladder: "
+				+ "<br/>type: "+importedBladder.getType()+"<br/>"
+				+ "<br/>storage: "+importedBladder.getUrineStorage()+"mL<br/>"
+				+ "<br/>continence: "+importedBladder.getContinencePercent()+"%<br/>"
+				+ "<br/>regen: "+importedBladder.getRawUrineRegenerationValue()+"<br/>"
+				+ "<br/>stored: "+importedBladder.getUrineStored()+"mL<br/>");
 		/**
 		 * End of Alfador-inserted code.
 		 */

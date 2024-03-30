@@ -8,7 +8,7 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 /**
  * Bladder body part to hold urine. Because we can't just use the Testicle class. It's not stored there.
  * @since 0.4.9_alfador0.1.0
- * @version 0.4.9_alfador0.1.0
+ * @version 0.4.9_alfador0.1.1
  * @author Alfador
  */
 public class Bladder implements BodyPartInterface {
@@ -48,7 +48,7 @@ public class Bladder implements BodyPartInterface {
 
     public String setType(GameCharacter owner, AbstractBladderType type) {
         this.type = type;
-        urine.setType(type.getFluidType());
+        urine = new FluidUrine(type.getFluidType());
         return "";
     }
 
