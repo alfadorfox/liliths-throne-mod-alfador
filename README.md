@@ -3,6 +3,7 @@
 This is the source code for Lilith's Throne.
 
 Includes modding work by Alfador. See alfador-mod.md for details. Content warning: WS, ABDL
+This fork is not endorsed by Innoxia.
 
 You must agree to the terms of the attached disclaimer and abide by the terms of the license if you wish to view this source code.
 
